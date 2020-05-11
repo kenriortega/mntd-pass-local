@@ -1,0 +1,61 @@
+{
+  "name": "mntd-pass",
+  "version": "0.0.0",
+  "author": "jorge",
+  "bin": {
+    "mntd-pass": "./bin/run"
+  },
+  "bugs": "https://github.com/node_js/mntd-pass/issues",
+  "dependencies": {
+    "@mntd/auth": "file:packages/mntd-auth",
+    "@mntd/crypto": "file:packages/mntd-crypto",
+    "@mntd/db": "file:packages/mntd-db",
+    "@mntd/services": "file:packages/mntd-services",
+    "@oclif/command": "^1.5.19",
+    "@oclif/config": "^1.14.0",
+    "@oclif/errors": "^1.2.2",
+    "@oclif/plugin-help": "^2.2.3",
+    "cli-ux": "^5.4.5",
+    "clipboardy": "^2.3.0"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1.22.2",
+    "eslint": "^5.16.0",
+    "eslint-config-oclif": "^3.1.0",
+    "globby": "^10.0.2",
+    "lerna": "^3.20.2"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/npm-shrinkwrap.json",
+    "/oclif.manifest.json",
+    "/src"
+  ],
+  "homepage": "https://github.com/node_js/mntd-pass",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "oclif": {
+    "commands": "./src/commands",
+    "hooks": {
+      "authenticate": "./src/hooks/auth/index.js"
+    },
+    "bin": "mntd-pass",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "repository": "node_js/mntd-pass",
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "posttest": "eslint .",
+    "prepack": "oclif-dev manifest && oclif-dev readme",
+    "test": "echo NO TESTS",
+    "version": "oclif-dev readme && git add README.md"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "development": {
+    "username": "secrets",
+    "password": "secrets",
+    "database": "secretsdb",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "development_lite": {
+    "dialect": "sqlite",
+    "storage": "secrets_dev.db"
+  },
+  "test": {
+    "dialect": "sqlite",
+    "storage": "secrets_dev.db"
+  },
+  "production": {
+    "use_env_variable": "DATABASE_URL"
+  }
+}
