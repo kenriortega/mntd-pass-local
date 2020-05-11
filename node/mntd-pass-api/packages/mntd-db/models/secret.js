@@ -6,13 +6,14 @@ module.exports = (sequelize, DataTypes) => {
       username: DataTypes.STRING,
       name: DataTypes.STRING,
       value: DataTypes.STRING
+      // TODO: ADD field category for visualize in a frontend
     },
     {
       underscored: true,
       tableName: 'secrets'
     }
   )
-  Secret.associate = function(models) {
+  Secret.associate = function (models) {
     Secret.belongsTo(models.User, {
       targetKey: 'username',
       foreignKey: 'username',
