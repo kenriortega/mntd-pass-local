@@ -21,28 +21,6 @@
       errorMSG.message
     }}</span>
   </div>
-  <!-- <div
-    :class="
-      `bg-${
-        errorMSG.error === 'Unauthorized' ? 'yellow' : 'red'
-      }-100 border border-${
-        errorMSG.error === 'Unauthorized' ? 'yellow' : 'red'
-      }-400 text-${
-        errorMSG.error === 'Unauthorized' ? 'yellow' : 'red'
-      }-700 px-4 py-3 rounded relative my-5`
-    "
-    role="alert"
-  >
-    <strong
-      :class="
-        `font-bold bg-${
-          errorMSG.error === 'Unauthorized' ? 'yellow' : 'red'
-        }-500 rounded-lg rounded relative m-2 p-2`
-      "
-      >{{ errorMSG.statusCode }}
-    </strong>
-    <span class="block sm:inline">{{ errorMSG.message }}</span> -->
-  <!-- </div> -->
 </template>
 
 <script>
