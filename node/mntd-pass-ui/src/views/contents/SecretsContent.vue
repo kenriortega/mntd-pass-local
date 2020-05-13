@@ -33,7 +33,6 @@
 </template>
 
 <script>
-  import '@/assets/css/all.min.css'
   import utils from '@/assets/utils/'
   import AlertComponent from '@/components/AlertComponent'
   import TopBar from '@/components/TopBarComponent'

@@ -37,7 +37,6 @@
 </template>
 
 <script>
-  import '@/assets/css/all.min.css'
   import AlertComponent from '@/components/AlertComponent'
 
   import utils from '@/assets/utils/'
