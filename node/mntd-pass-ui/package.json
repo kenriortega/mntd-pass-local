@@ -8,6 +8,15 @@
     "lint": "vue-cli-service lint --no-fix",
     "lint:fix": "vue-cli-service lint"
   },
+  "gitHooks": {
+    "pre-commit": "lint-staged && npm run lint:fix"
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue}": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  },
   "dependencies": {
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
