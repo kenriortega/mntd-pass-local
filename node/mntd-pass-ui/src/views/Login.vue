@@ -37,35 +37,32 @@
 </template>
 
 <script>
-  import AlertComponent from '@/components/AlertComponent'
+import AlertComponent from '@/components/AlertComponent'
 
-  import utils from '@/assets/utils/'
-  export default {
-    name: 'login',
-    components: {
-      AlertComponent
-    },
-    data() {
-      return {
-        payload: {},
-        user: {},
-        errorMSG: {}
-      }
-    },
-    methods: {
-      async authenticate() {
-        try {
-          let res = await utils.auth(
-            this.payload.username,
-            this.payload.password
-          )
-          this.user = res.data
-          utils.saveLocalStorage('user', this.user)
-          this.$router.push({ name: 'secrets' })
-        } catch (err) {
-          this.errorMSG = err.response.data
-        }
+import utils from '@/assets/utils/'
+export default {
+  name: 'login',
+  components: {
+    AlertComponent
+  },
+  data() {
+    return {
+      payload: {},
+      user: {},
+      errorMSG: {}
+    }
+  },
+  methods: {
+    async authenticate() {
+      try {
+        let res = await utils.auth(this.payload.username, this.payload.password)
+        this.user = res.data
+        utils.saveLocalStorage('user', this.user)
+        this.$router.push({ name: 'secrets' })
+      } catch (err) {
+        this.errorMSG = err.response.data
       }
     }
   }
+}
 </script>

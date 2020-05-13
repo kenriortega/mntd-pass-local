@@ -53,84 +53,84 @@
 </template>
 
 <script>
-  export default {
-    name: 'sidebar',
-    data() {
-      return {
-        sidebarIndexElems: [
-          {
-            id: Math.random().toString(),
-            name: 'Secrets',
-            icon: 'lock',
-            route: 'secrets'
-          }
-        ],
-        sidebarOtherElms: [
-          {
-            id: Math.random().toString(),
-            name: 'categorys',
-            subitems: [
-              {
-                id: Math.random().toString(),
-                name: 'Server',
-                icon: 'server',
-                filter: 'server'
-              },
-              {
-                id: Math.random().toString(),
-                name: 'Services',
-                icon: 'signal',
-                filter: 'services'
-              },
-              {
-                id: Math.random().toString(),
-                name: 'Personal',
-                icon: 'users',
-                filter: 'personal'
-              }
-            ]
-          },
-          {
-            id: Math.random().toString(),
-            name: 'Gestion',
-            subitems: [
-              {
-                id: Math.random().toString(),
-                name: 'Secrets',
-                icon: 'plus',
-                filter: 'secret-create'
-              },
-              {
-                id: Math.random().toString(),
-                name: 'Users',
-                icon: 'plus',
-                filter: 'user-create'
-              }
-            ]
-          }
-        ]
-      }
-    },
+export default {
+  name: 'sidebar',
+  data() {
+    return {
+      sidebarIndexElems: [
+        {
+          id: Math.random().toString(),
+          name: 'Secrets',
+          icon: 'lock',
+          route: 'secrets'
+        }
+      ],
+      sidebarOtherElms: [
+        {
+          id: Math.random().toString(),
+          name: 'categorys',
+          subitems: [
+            {
+              id: Math.random().toString(),
+              name: 'Server',
+              icon: 'server',
+              filter: 'server'
+            },
+            {
+              id: Math.random().toString(),
+              name: 'Services',
+              icon: 'signal',
+              filter: 'services'
+            },
+            {
+              id: Math.random().toString(),
+              name: 'Personal',
+              icon: 'users',
+              filter: 'personal'
+            }
+          ]
+        },
+        {
+          id: Math.random().toString(),
+          name: 'Gestion',
+          subitems: [
+            {
+              id: Math.random().toString(),
+              name: 'Secrets',
+              icon: 'plus',
+              filter: 'secret-create'
+            },
+            {
+              id: Math.random().toString(),
+              name: 'Users',
+              icon: 'plus',
+              filter: 'user-create'
+            }
+          ]
+        }
+      ]
+    }
+  },
 
-    methods: {
-      logout() {
-        window.localStorage.clear()
-        this.$router.push({ name: 'Login' })
-      },
-      activeRoute() {
-        return this.$route.name
-      }
+  methods: {
+    logout() {
+      window.localStorage.clear()
+      this.$router.push({ name: 'Login' })
+    },
+    activeRoute() {
+      return this.$route.name
     }
   }
+}
 </script>
 <style lang="scss">
-  .sidebar-spotify::-webkit-scrollbar {
-    width: 8px;
-    background-color: #121212;
-  }
+.sidebar-spotify::-webkit-scrollbar {
+  width: 8px;
+  background-color: #121212;
+}
 
-  .sidebar-spotify::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background-color: #535353;
-  }
+.sidebar-spotify::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #535353;
+}
 </style>

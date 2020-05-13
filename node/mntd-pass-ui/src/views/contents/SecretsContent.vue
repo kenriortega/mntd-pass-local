@@ -33,84 +33,84 @@
 </template>
 
 <script>
-  import utils from '@/assets/utils/'
-  import AlertComponent from '@/components/AlertComponent'
-  import TopBar from '@/components/TopBarComponent'
-  import Secret from '@/components/SecretComponent'
-  import moment from 'moment'
-  moment.locale('es')
-  export default {
-    name: 'secretsContent',
-    components: {
-      TopBar,
-      AlertComponent,
-      Secret
-    },
-    data() {
-      return {
-        user: {},
-        data: {
-          count: 0,
-          data: []
-        },
-        errorMSG: {}
-      }
-    },
-    computed: {
-      listSecrets() {
-        return this.data.data.map(s => {
-          s.createdAt = moment(s.createdAt).fromNow()
-          return s
-        })
+import utils from '@/assets/utils/'
+import AlertComponent from '@/components/AlertComponent'
+import TopBar from '@/components/TopBarComponent'
+import Secret from '@/components/SecretComponent'
+import moment from 'moment'
+moment.locale('es')
+export default {
+  name: 'secretsContent',
+  components: {
+    TopBar,
+    AlertComponent,
+    Secret
+  },
+  data() {
+    return {
+      user: {},
+      data: {
+        count: 0,
+        data: []
       },
-      isHaveSecrets() {
-        if (this.data.data.length > 0) {
-          return true
-        } else {
-          return false
-        }
-      }
+      errorMSG: {}
+    }
+  },
+  computed: {
+    listSecrets() {
+      return this.data.data.map(s => {
+        s.createdAt = moment(s.createdAt).fromNow()
+        return s
+      })
     },
-    async mounted() {
-      this.getUserFromLocalStorage()
-      if (utils.getItemStorage('secrets')) {
-        this.data = utils.getItemStorage('secrets')
+    isHaveSecrets() {
+      if (this.data.data.length > 0) {
+        return true
       } else {
-        this.getSecretsByUsername()
-      }
-    },
-    methods: {
-      getUserFromLocalStorage() {
-        this.user = utils.getItemStorage('user')
-      },
-      async getSecretsByUsername() {
-        let { username, token } = this.user
-
-        try {
-          let res = await utils.getSecrets(username, token)
-          if (res.status === 200) {
-            this.data = res.data
-            utils.saveLocalStorage('secrets', this.data)
-          }
-        } catch (err) {
-          this.errorMSG = err.response.data
-          // this.$router.push({ name: 'Login' })
-        }
-      },
-      showError(error) {
-        this.errorMSG = error
+        return false
       }
     }
+  },
+  async mounted() {
+    this.getUserFromLocalStorage()
+    if (utils.getItemStorage('secrets')) {
+      this.data = utils.getItemStorage('secrets')
+    } else {
+      this.getSecretsByUsername()
+    }
+  },
+  methods: {
+    getUserFromLocalStorage() {
+      this.user = utils.getItemStorage('user')
+    },
+    async getSecretsByUsername() {
+      let { username, token } = this.user
+
+      try {
+        let res = await utils.getSecrets(username, token)
+        if (res.status === 200) {
+          this.data = res.data
+          utils.saveLocalStorage('secrets', this.data)
+        }
+      } catch (err) {
+        this.errorMSG = err.response.data
+        // this.$router.push({ name: 'Login' })
+      }
+    },
+    showError(error) {
+      this.errorMSG = error
+    }
   }
+}
 </script>
 <style lang="scss">
-  .content-spotify::-webkit-scrollbar {
-    width: 8px;
-    background-color: #181818;
-  }
+.content-spotify::-webkit-scrollbar {
+  width: 8px;
+  background-color: #181818;
+}
 
-  .content-spotify::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background-color: #535353;
-  }
+.content-spotify::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #535353;
+}
 </style>

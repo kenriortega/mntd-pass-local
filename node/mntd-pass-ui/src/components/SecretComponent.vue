@@ -55,53 +55,53 @@
 </template>
 
 <script>
-  import utils from '../assets/utils/'
+import utils from '../assets/utils/'
 
-  export default {
-    name: 'Secret',
-    props: ['secret', 'user', 'indice'],
-    data() {
-      return {
-        value: '',
-        isCoping: null,
-        msg: null,
-        changed: false
+export default {
+  name: 'Secret',
+  props: ['secret', 'user', 'indice'],
+  data() {
+    return {
+      value: '',
+      isCoping: null,
+      msg: null,
+      changed: false
+    }
+  },
+  methods: {
+    async getValueFromSecret(name) {
+      let { username, token } = this.user
+      try {
+        let res = await utils.getValueSecret(username, name, token)
+        if (res.status === 200) {
+          this.value = res.data.value
+          this.changed = true
+        }
+      } catch (err) {
+        this.$emit('showError', err.response.data)
+        this.changed = false
       }
     },
-    methods: {
-      async getValueFromSecret(name) {
-        let { username, token } = this.user
-        try {
-          let res = await utils.getValueSecret(username, name, token)
-          if (res.status === 200) {
-            this.value = res.data.value
-            this.changed = true
-          }
-        } catch (err) {
-          this.$emit('showError', err.response.data)
-          this.changed = false
-        }
-      },
-      copyToClipBoard(indice) {
-        this.isCoping = indice
-        let copyToClibBoard = document.querySelector(`#clipboard-${indice}`)
-        copyToClibBoard.setAttribute('type', 'text') // 不是 hidden 才能複製
-        copyToClibBoard.select()
-        try {
-          let successful = document.execCommand('copy')
-          this.msg = successful ? 'successful' : 'unsuccessful'
-          // Migrar a toast o sweet alert
-        } catch (err) {
-          this.$emit('showError', {
-            statusCode: 500,
-            error: 'Faild to Copy'
-          })
-        }
-
-        /* unselect the range */
-        copyToClibBoard.setAttribute('type', 'hidden')
-        window.getSelection().removeAllRanges()
+    copyToClipBoard(indice) {
+      this.isCoping = indice
+      let copyToClibBoard = document.querySelector(`#clipboard-${indice}`)
+      copyToClibBoard.setAttribute('type', 'text') // 不是 hidden 才能複製
+      copyToClibBoard.select()
+      try {
+        let successful = document.execCommand('copy')
+        this.msg = successful ? 'successful' : 'unsuccessful'
+        // Migrar a toast o sweet alert
+      } catch (err) {
+        this.$emit('showError', {
+          statusCode: 500,
+          error: 'Faild to Copy'
+        })
       }
+
+      /* unselect the range */
+      copyToClibBoard.setAttribute('type', 'hidden')
+      window.getSelection().removeAllRanges()
     }
   }
+}
 </script>

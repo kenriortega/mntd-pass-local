@@ -12,14 +12,14 @@
 </template>
 
 <script>
-  import AccountDropdown from '@/components/AccountDropdownComponent'
+import AccountDropdown from '@/components/AccountDropdownComponent'
 
-  export default {
-    name: 'top-bar',
-    components: {
-      AccountDropdown
-    }
+export default {
+  name: 'top-bar',
+  components: {
+    AccountDropdown
   }
+}
 </script>
 
 <style></style>
