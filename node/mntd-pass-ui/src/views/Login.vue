@@ -1,6 +1,9 @@
 <template>
   <div class="bg-gray-900-spotify flex flex-col items-center h-screen">
     <form class="w-full max-w-sm my-40 items-center">
+      <div class="flex flex-col items-center py-2">
+        <alert-component v-show="errorMSG.error" :errorMSG="errorMSG" />
+      </div>
       <div class="flex items-center border-b border-b-2 border-green-800 py-2">
         <i class="mr-2 fa fa-user text-gray-700-spotify"></i>
         <input
@@ -35,13 +38,19 @@
 
 <script>
   import '@/assets/css/all.min.css'
+  import AlertComponent from '@/components/AlertComponent'
 
   import utils from '@/assets/utils/'
   export default {
+    name: 'login',
+    components: {
+      AlertComponent
+    },
     data() {
       return {
         payload: {},
-        user: {}
+        user: {},
+        errorMSG: {}
       }
     },
     methods: {
@@ -51,15 +60,11 @@
             this.payload.username,
             this.payload.password
           )
-          if (res.status === 200) {
-            this.user = res.data
-            utils.saveLocalStorage('user', this.user)
-            this.$router.push({ name: 'secrets' })
-          } else {
-            console.log(res.status)
-          }
+          this.user = res.data
+          utils.saveLocalStorage('user', this.user)
+          this.$router.push({ name: 'secrets' })
         } catch (err) {
-          console.log(err.message)
+          this.errorMSG = err.response.data
         }
       }
     }

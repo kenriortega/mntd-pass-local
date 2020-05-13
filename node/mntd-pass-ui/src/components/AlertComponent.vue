@@ -47,7 +47,7 @@
 
 <script>
   export default {
-    name: 'Alert',
+    name: 'AlertComponent',
     props: ['errorMSG']
   }
 </script>
