@@ -37,8 +37,7 @@ import { SecretService, UtilesService } from '@/services/'
 import AlertComponent from '@/components/AlertComponent'
 import TopBar from '@/components/TopBarComponent'
 import Secret from '@/components/SecretComponent'
-import moment from 'moment'
-moment.locale('es')
+import SecretsTransformer from '@/transformers/Secrets'
 export default {
   name: 'secretsContent',
   components: {
@@ -58,10 +57,7 @@ export default {
   },
   computed: {
     listSecrets() {
-      return this.data.data.map(s => {
-        s.createdAt = moment(s.createdAt).fromNow()
-        return s
-      })
+      return SecretsTransformer.fetchCollection(this.data.data)
     },
     isHaveSecrets() {
       if (this.data.data.length > 0) {
