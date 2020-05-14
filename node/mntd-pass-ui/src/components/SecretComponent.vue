@@ -7,8 +7,8 @@
       >
         <div class="sm:flex sm:items-center px-6 py-4">
           <img
-            class="w-8 h-8 block mx-auto sm:mx-0 sm:flex-shrink-0 h-16 sm:h-24 rounded-full"
-            src="../assets/icons/computadora.svg"
+            class="w-20 h-20 block mx-auto sm:mx-0 sm:flex-shrink-0 h-16 sm:h-24 rounded-full"
+            src="@/assets/imgs/profile.svg"
             alt="computer"
           />
           <div class="mt-4 sm:mt-0 sm:ml-4 text-center sm:text-left">
