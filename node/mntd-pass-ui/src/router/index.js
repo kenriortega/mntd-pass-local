@@ -1,30 +1,30 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Login from '../views/Login.vue'
-import notFound404 from '../views/notFound404.vue'
+import ROUTES from '@/constant/routes'
+import Login from '@/views/Login.vue'
+import notFound404 from '@/views/notFound404.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '*',
-    name: 'notFound404',
+    path: ROUTES.ERROR404.path,
+    name: ROUTES.ERROR404.name,
     component: notFound404
   },
   {
-    path: '/',
-    name: 'Login',
+    path: ROUTES.LOGIN.path,
+    name: ROUTES.LOGIN.name,
     component: Login
   },
 
   {
-    path: '/secrets',
-    name: 'secrets',
+    path: ROUTES.SECRETS.path,
+    name: ROUTES.SECRETS.name,
     // route level code-splitting
     // this generates a separate chunk (secrets.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/Secrets.vue')
+    component: () => import('@/views/Secrets.vue')
   }
 ]
 

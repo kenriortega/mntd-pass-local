@@ -44,6 +44,8 @@
 </template>
 
 <script>
+import ROUTES from '@/constant/routes'
+
 export default {
   name: 'account-dropdown',
   data() {
@@ -65,7 +67,7 @@ export default {
   methods: {
     logout() {
       window.localStorage.clear()
-      this.$router.push({ name: 'Login' })
+      this.$router.push({ name: ROUTES.LOGIN.name })
     }
   }
 }

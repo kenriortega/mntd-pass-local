@@ -53,6 +53,8 @@
 </template>
 
 <script>
+import ROUTES from '@/constant/routes'
+
 export default {
   name: 'sidebar',
   data() {
@@ -62,7 +64,7 @@ export default {
           id: Math.random().toString(),
           name: 'Secrets',
           icon: 'lock',
-          route: 'secrets'
+          route: ROUTES.SECRETS.name
         }
       ],
       sidebarOtherElms: [
@@ -115,7 +117,7 @@ export default {
   methods: {
     logout() {
       window.localStorage.clear()
-      this.$router.push({ name: 'Login' })
+      this.$router.push({ name: ROUTES.LOGIN.name })
     },
     activeRoute() {
       return this.$route.name

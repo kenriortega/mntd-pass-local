@@ -94,7 +94,6 @@ export default {
         }
       } catch (err) {
         this.errorMSG = err.response.data
-        // this.$router.push({ name: 'Login' })
       }
     },
     showError(error) {
