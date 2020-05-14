@@ -33,3 +33,4 @@ npm run lint
 - Agregar funcionalidad de toggle sidebar.
 - Agregar vista del perfil de usaurio y componente de actualizacion de contrasennas
 - Mostrar alertas cuando se actualizen los secrets despues de actualizar los password del user.
+- Agregar tabla para mostrar otra alternativa a ver los secrets.
