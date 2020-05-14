@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import utils from '@/assets/utils/'
+import { SecretService, UtilesService } from '@/services/'
 import AlertComponent from '@/components/AlertComponent'
 import TopBar from '@/components/TopBarComponent'
 import Secret from '@/components/SecretComponent'
@@ -73,24 +73,24 @@ export default {
   },
   async mounted() {
     this.getUserFromLocalStorage()
-    if (utils.getItemStorage('secrets')) {
-      this.data = utils.getItemStorage('secrets')
+    if (UtilesService.getItemStorage('secrets')) {
+      this.data = UtilesService.getItemStorage('secrets')
     } else {
       this.getSecretsByUsername()
     }
   },
   methods: {
     getUserFromLocalStorage() {
-      this.user = utils.getItemStorage('user')
+      this.user = UtilesService.getItemStorage('user')
     },
     async getSecretsByUsername() {
       let { username, token } = this.user
 
       try {
-        let res = await utils.getSecrets(username, token)
+        let res = await SecretService.getSecrets(username, token)
         if (res.status === 200) {
           this.data = res.data
-          utils.saveLocalStorage('secrets', this.data)
+          UtilesService.saveLocalStorage('secrets', this.data)
         }
       } catch (err) {
         this.errorMSG = err.response.data

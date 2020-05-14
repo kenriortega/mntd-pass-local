@@ -38,8 +38,8 @@
 
 <script>
 import AlertComponent from '@/components/AlertComponent'
+import { AuthService, UtilesService } from '@/services/'
 
-import utils from '@/assets/utils/'
 export default {
   name: 'login',
   components: {
@@ -55,9 +55,12 @@ export default {
   methods: {
     async authenticate() {
       try {
-        let res = await utils.auth(this.payload.username, this.payload.password)
+        let res = await AuthService.auth(
+          this.payload.username,
+          this.payload.password
+        )
         this.user = res.data
-        utils.saveLocalStorage('user', this.user)
+        UtilesService.saveLocalStorage('user', this.user)
         this.$router.push({ name: 'secrets' })
       } catch (err) {
         this.errorMSG = err.response.data

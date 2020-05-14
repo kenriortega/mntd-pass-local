@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import utils from '../assets/utils/'
+import { SecretService } from '@/services/'
 
 export default {
   name: 'Secret',
@@ -72,7 +72,7 @@ export default {
     async getValueFromSecret(name) {
       let { username, token } = this.user
       try {
-        let res = await utils.getValueSecret(username, name, token)
+        let res = await SecretService.getValueSecret(username, name, token)
         if (res.status === 200) {
           this.value = res.data.value
           this.changed = true
