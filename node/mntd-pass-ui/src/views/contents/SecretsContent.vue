@@ -10,7 +10,7 @@
             <strong class="text-xl text-green-300">{{
               user.fullName || user.username
             }}</strong>
-            tienes
+            have
             <strong class="text-xl text-green-300">{{ data.count }}</strong>
             Secrets
           </h3>

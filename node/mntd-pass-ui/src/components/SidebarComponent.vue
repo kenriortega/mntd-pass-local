@@ -70,7 +70,7 @@ export default {
       sidebarOtherElms: [
         {
           id: Math.random().toString(),
-          name: 'categorys',
+          name: 'categories',
           subitems: [
             {
               id: Math.random().toString(),
@@ -94,7 +94,7 @@ export default {
         },
         {
           id: Math.random().toString(),
-          name: 'Gestion',
+          name: 'Managedment',
           subitems: [
             {
               id: Math.random().toString(),
