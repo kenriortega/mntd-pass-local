@@ -13,9 +13,18 @@
             have
             <strong class="text-xl text-green-300">{{ data.count }}</strong>
             Secrets
+            <i
+              :class="
+                `ml-4 mr-2 cursor-pointer fa fa-${
+                  showViews ? 'table' : 'address-card'
+                }`
+              "
+              @click="showViews = !showViews"
+            ></i>
           </h3>
           <div class="flex items-center mt-4 -mx-2" v-if="isHaveSecrets">
-            <ul class="flex flex-wrap justify-center">
+            <!-- CardView Secrets -->
+            <ul v-if="showViews" class="flex flex-wrap justify-center">
               <secret
                 v-for="(secret, key) in listSecrets"
                 :key="secret.name"
@@ -25,6 +34,10 @@
                 @showError="showError($event)"
               />
             </ul>
+            <!-- end CardView Secrets -->
+            <!-- TableView  Secrets -->
+            <div v-else><h1>Table</h1></div>
+            <!-- end TableView Secrets -->
           </div>
         </div>
       </div>
@@ -51,7 +64,8 @@ export default {
         count: 0,
         data: []
       },
-      errorMSG: {}
+      errorMSG: {},
+      showViews: true
     }
   },
   computed: {
