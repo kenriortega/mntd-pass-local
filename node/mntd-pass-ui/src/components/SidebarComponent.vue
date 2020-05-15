@@ -1,6 +1,10 @@
 <template>
   <div
-    class="sidebar bg-gray-900-spotify w-48 flex-none  flex flex-col justify-between font-semibold"
+    :class="
+      `${
+        isToggle ? 'hidden' : ''
+      } sidebar bg-gray-900-spotify w-48 flex-none  flex flex-col justify-between font-semibold`
+    "
   >
     <!-- parte 1 Links Generales -->
     <ul class="py-6">
@@ -53,84 +57,90 @@
 </template>
 
 <script>
-  export default {
-    name: 'sidebar',
-    data() {
-      return {
-        sidebarIndexElems: [
-          {
-            id: Math.random().toString(),
-            name: 'Secrets',
-            icon: 'lock',
-            route: 'secrets'
-          }
-        ],
-        sidebarOtherElms: [
-          {
-            id: Math.random().toString(),
-            name: 'categorys',
-            subitems: [
-              {
-                id: Math.random().toString(),
-                name: 'Server',
-                icon: 'server',
-                filter: 'server'
-              },
-              {
-                id: Math.random().toString(),
-                name: 'Services',
-                icon: 'signal',
-                filter: 'services'
-              },
-              {
-                id: Math.random().toString(),
-                name: 'Personal',
-                icon: 'users',
-                filter: 'personal'
-              }
-            ]
-          },
-          {
-            id: Math.random().toString(),
-            name: 'Gestion',
-            subitems: [
-              {
-                id: Math.random().toString(),
-                name: 'Secrets',
-                icon: 'plus',
-                filter: 'secret-create'
-              },
-              {
-                id: Math.random().toString(),
-                name: 'Users',
-                icon: 'plus',
-                filter: 'user-create'
-              }
-            ]
-          }
-        ]
-      }
-    },
+import ROUTES from '@/constant/routes'
+import { bus } from '@/main.js'
 
-    methods: {
-      logout() {
-        window.localStorage.clear()
-        this.$router.push({ name: 'Login' })
-      },
-      activeRoute() {
-        return this.$route.name
-      }
+export default {
+  name: 'sidebar',
+  data() {
+    return {
+      isToggle: false,
+      sidebarIndexElems: [
+        {
+          id: Math.random().toString(),
+          name: 'Secrets',
+          icon: 'lock',
+          route: ROUTES.SECRETS.name
+        }
+      ],
+      sidebarOtherElms: [
+        {
+          id: Math.random().toString(),
+          name: 'categories',
+          subitems: [
+            {
+              id: Math.random().toString(),
+              name: 'Server',
+              icon: 'server',
+              filter: 'server'
+            },
+            {
+              id: Math.random().toString(),
+              name: 'Services',
+              icon: 'signal',
+              filter: 'services'
+            },
+            {
+              id: Math.random().toString(),
+              name: 'Personal',
+              icon: 'users',
+              filter: 'personal'
+            }
+          ]
+        },
+        {
+          id: Math.random().toString(),
+          name: 'Managedment',
+          subitems: [
+            {
+              id: Math.random().toString(),
+              name: 'Secrets',
+              icon: 'plus',
+              filter: 'secret-create'
+            },
+            {
+              id: Math.random().toString(),
+              name: 'Profile',
+              icon: 'plus',
+              filter: 'user-create'
+            }
+          ]
+        }
+      ]
+    }
+  },
+  created() {
+    bus.$on('toggleSidebar', data => (this.isToggle = data))
+  },
+  methods: {
+    logout() {
+      window.localStorage.clear()
+      this.$router.push({ name: ROUTES.LOGIN.name })
+    },
+    activeRoute() {
+      return this.$route.name
     }
   }
+}
 </script>
 <style lang="scss">
-  .sidebar-spotify::-webkit-scrollbar {
-    width: 8px;
-    background-color: #121212;
-  }
+.sidebar-spotify::-webkit-scrollbar {
+  width: 8px;
+  background-color: #121212;
+}
 
-  .sidebar-spotify::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background-color: #535353;
-  }
+.sidebar-spotify::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #535353;
+}
 </style>

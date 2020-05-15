@@ -12,14 +12,14 @@
 </template>
 
 <script>
-  // @ is an alias to /src
-  import SidebarComponent from '@/components/SidebarComponent'
-  import SecretsContent from '@/views/contents/SecretsContent'
-  export default {
-    name: 'Secrets',
-    components: {
-      SidebarComponent,
-      SecretsContent
-    }
+// @ is an alias to /src
+import SidebarComponent from '@/components/SidebarComponent'
+import SecretsContent from '@/views/contents/SecretsContent'
+export default {
+  name: 'Secrets',
+  components: {
+    SidebarComponent,
+    SecretsContent
   }
+}
 </script>

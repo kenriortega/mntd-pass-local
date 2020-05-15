@@ -10,12 +10,21 @@
             <strong class="text-xl text-green-300">{{
               user.fullName || user.username
             }}</strong>
-            tienes
+            have
             <strong class="text-xl text-green-300">{{ data.count }}</strong>
             Secrets
+            <i
+              :class="
+                `ml-4 mr-2 cursor-pointer fa fa-${
+                  showViews ? 'table' : 'address-card'
+                }`
+              "
+              @click="showViews = !showViews"
+            ></i>
           </h3>
           <div class="flex items-center mt-4 -mx-2" v-if="isHaveSecrets">
-            <ul class="flex flex-wrap justify-center">
+            <!-- CardView Secrets -->
+            <ul v-if="showViews" class="flex flex-wrap justify-center">
               <secret
                 v-for="(secret, key) in listSecrets"
                 :key="secret.name"
@@ -25,6 +34,10 @@
                 @showError="showError($event)"
               />
             </ul>
+            <!-- end CardView Secrets -->
+            <!-- TableView  Secrets -->
+            <div v-else><h1>Table</h1></div>
+            <!-- end TableView Secrets -->
           </div>
         </div>
       </div>
@@ -33,85 +46,80 @@
 </template>
 
 <script>
-  import '@/assets/css/all.min.css'
-  import utils from '@/assets/utils/'
-  import AlertComponent from '@/components/AlertComponent'
-  import TopBar from '@/components/TopBarComponent'
-  import Secret from '@/components/SecretComponent'
-  import moment from 'moment'
-  moment.locale('es')
-  export default {
-    name: 'secretsContent',
-    components: {
-      TopBar,
-      AlertComponent,
-      Secret
-    },
-    data() {
-      return {
-        user: {},
-        data: {
-          count: 0,
-          data: []
-        },
-        errorMSG: {}
-      }
-    },
-    computed: {
-      listSecrets() {
-        return this.data.data.map(s => {
-          s.createdAt = moment(s.createdAt).fromNow()
-          return s
-        })
+import { SecretService, UtilesService } from '@/services/'
+import AlertComponent from '@/components/AlertComponent'
+import TopBar from '@/components/TopBarComponent'
+import Secret from '@/components/SecretComponent'
+export default {
+  name: 'secretsContent',
+  components: {
+    TopBar,
+    AlertComponent,
+    Secret
+  },
+  data() {
+    return {
+      user: {},
+      data: {
+        count: 0,
+        data: []
       },
-      isHaveSecrets() {
-        if (this.data.data.length > 0) {
-          return true
-        } else {
-          return false
-        }
-      }
+      errorMSG: {},
+      showViews: true
+    }
+  },
+  computed: {
+    listSecrets() {
+      return this.data.data
     },
-    async mounted() {
-      this.getUserFromLocalStorage()
-      if (utils.getItemStorage('secrets')) {
-        this.data = utils.getItemStorage('secrets')
+    isHaveSecrets() {
+      if (this.data.data.length > 0) {
+        return true
       } else {
-        this.getSecretsByUsername()
-      }
-    },
-    methods: {
-      getUserFromLocalStorage() {
-        this.user = utils.getItemStorage('user')
-      },
-      async getSecretsByUsername() {
-        let { username, token } = this.user
-
-        try {
-          let res = await utils.getSecrets(username, token)
-          if (res.status === 200) {
-            this.data = res.data
-            utils.saveLocalStorage('secrets', this.data)
-          }
-        } catch (err) {
-          this.errorMSG = err.response.data
-          // this.$router.push({ name: 'Login' })
-        }
-      },
-      showError(error) {
-        this.errorMSG = error
+        return false
       }
     }
+  },
+  async mounted() {
+    this.getUserFromLocalStorage()
+    if (UtilesService.getItemStorage('secrets')) {
+      this.data = UtilesService.getItemStorage('secrets')
+    } else {
+      this.getSecretsByUsername()
+    }
+  },
+  methods: {
+    getUserFromLocalStorage() {
+      this.user = UtilesService.getItemStorage('user')
+    },
+    async getSecretsByUsername() {
+      let { username, token } = this.user
+
+      try {
+        let res = await SecretService.getSecrets(username, token)
+        if (res.status === 200) {
+          this.data = res.data
+
+          UtilesService.saveLocalStorage('secrets', this.data)
+        }
+      } catch (err) {
+        this.errorMSG = err.response.data
+      }
+    },
+    showError(error) {
+      this.errorMSG = error
+    }
   }
+}
 </script>
 <style lang="scss">
-  .content-spotify::-webkit-scrollbar {
-    width: 8px;
-    background-color: #181818;
-  }
+.content-spotify::-webkit-scrollbar {
+  width: 8px;
+  background-color: #181818;
+}
 
-  .content-spotify::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background-color: #535353;
-  }
+.content-spotify::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #535353;
+}
 </style>

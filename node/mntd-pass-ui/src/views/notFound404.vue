@@ -5,9 +5,9 @@
 </template>
 
 <script>
-  export default {
-    name: 'notFound404'
-  }
+export default {
+  name: 'notFound404'
+}
 </script>
 
 <style></style>

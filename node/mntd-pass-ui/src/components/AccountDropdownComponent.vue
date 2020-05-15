@@ -44,31 +44,33 @@
 </template>
 
 <script>
-  export default {
-    name: 'account-dropdown',
-    data() {
-      return {
-        isOpen: false
-      }
-    },
-    created() {
-      const handleEsc = e => {
-        if (e.key === 'Esc' || e.key === 'Escape') {
-          this.isOpen = false
-        }
-      }
-      document.addEventListener('keydown', handleEsc)
-      this.$once('hook:beforeDestroy', () => {
-        document.removeEventListener('keydown', handleEsc)
-      })
-    },
-    methods: {
-      logout() {
-        window.localStorage.clear()
-        this.$router.push({ name: 'Login' })
+import ROUTES from '@/constant/routes'
+
+export default {
+  name: 'account-dropdown',
+  data() {
+    return {
+      isOpen: false
+    }
+  },
+  created() {
+    const handleEsc = e => {
+      if (e.key === 'Esc' || e.key === 'Escape') {
+        this.isOpen = false
       }
     }
+    document.addEventListener('keydown', handleEsc)
+    this.$once('hook:beforeDestroy', () => {
+      document.removeEventListener('keydown', handleEsc)
+    })
+  },
+  methods: {
+    logout() {
+      window.localStorage.clear()
+      this.$router.push({ name: ROUTES.LOGIN.name })
+    }
   }
+}
 </script>
 
 <style></style>

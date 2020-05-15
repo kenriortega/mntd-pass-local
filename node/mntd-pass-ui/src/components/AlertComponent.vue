@@ -24,10 +24,10 @@
 </template>
 
 <script>
-  export default {
-    name: 'AlertComponent',
-    props: ['errorMSG']
-  }
+export default {
+  name: 'AlertComponent',
+  props: ['errorMSG']
+}
 </script>
 
 <style></style>
