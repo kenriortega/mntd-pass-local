@@ -1,6 +1,10 @@
 <template>
   <div
-    class="sidebar bg-gray-900-spotify w-48 flex-none  flex flex-col justify-between font-semibold"
+    :class="
+      `${
+        isToggle ? 'hidden' : ''
+      } sidebar bg-gray-900-spotify w-48 flex-none  flex flex-col justify-between font-semibold`
+    "
   >
     <!-- parte 1 Links Generales -->
     <ul class="py-6">
@@ -54,11 +58,13 @@
 
 <script>
 import ROUTES from '@/constant/routes'
+import { bus } from '@/main.js'
 
 export default {
   name: 'sidebar',
   data() {
     return {
+      isToggle: false,
       sidebarIndexElems: [
         {
           id: Math.random().toString(),
@@ -104,7 +110,7 @@ export default {
             },
             {
               id: Math.random().toString(),
-              name: 'Users',
+              name: 'Profile',
               icon: 'plus',
               filter: 'user-create'
             }
@@ -113,7 +119,9 @@ export default {
       ]
     }
   },
-
+  created() {
+    bus.$on('toggleSidebar', data => (this.isToggle = data))
+  },
   methods: {
     logout() {
       window.localStorage.clear()

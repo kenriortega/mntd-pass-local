@@ -6,7 +6,7 @@ import '@/assets/main.scss'
 import '@/assets/css/all.min.css'
 
 Vue.config.productionTip = false
-
+export const bus = new Vue()
 new Vue({
   router,
   store,
