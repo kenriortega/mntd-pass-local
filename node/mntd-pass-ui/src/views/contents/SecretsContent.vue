@@ -37,7 +37,6 @@ import { SecretService, UtilesService } from '@/services/'
 import AlertComponent from '@/components/AlertComponent'
 import TopBar from '@/components/TopBarComponent'
 import Secret from '@/components/SecretComponent'
-import SecretsTransformer from '@/transformers/Secrets'
 export default {
   name: 'secretsContent',
   components: {
@@ -57,7 +56,7 @@ export default {
   },
   computed: {
     listSecrets() {
-      return SecretsTransformer.fetchCollection(this.data.data)
+      return this.data.data
     },
     isHaveSecrets() {
       if (this.data.data.length > 0) {
@@ -86,6 +85,7 @@ export default {
         let res = await SecretService.getSecrets(username, token)
         if (res.status === 200) {
           this.data = res.data
+
           UtilesService.saveLocalStorage('secrets', this.data)
         }
       } catch (err) {
