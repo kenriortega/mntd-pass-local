@@ -24,15 +24,15 @@ npm run build
 npm run lint
 ```
 
-### TODO change this to english
+### TODO
 
-- Agregar logica para crear secrets
-- Agrear component para crear secrets
-- Realizar logica para filtrar los secrets por categoria
-- Crear vista de detalles del secret
-- ~~Agregar funcionalidad de toggle sidebar.~~
-- Agregar vista del perfil de usaurio y componente de actualizacion de contrasennas
-- Mostrar alertas cuando se actualizen los secrets despues de actualizar los password del user.
-- ~~Agregar tabla para mostrar otra alternativa a ver los secrets.~~
-- Agregar funcionalidad de i18n
-- Agregar los test Unitarios
+- Add logic to create secrets
+- Add component to create secrets
+- Filter secrets by category
+- Add view for secrets details
+- ~~Add toggle sidebar feature~~
+- Add profile view and password update component
+- Show alerts when secrets change after password is updated
+- ~~Add secrets table view~~
+- Add i18n feature
+- Add unit testing
