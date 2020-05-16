@@ -1,0 +1,104 @@
+.vgt-wrap__actions-footer {
+  @apply bg-gray-100 border border-gray-900-spotify rounded-lg px-3 py-3 mb-5;
+}
+.vgt-wrap__footer {
+  @apply flex justify-between bg-gray-800-spotify border border-green-900 rounded-lg px-4 py-3;
+  &:after {
+    content: none;
+  }
+  .footer__row-count {
+    &__label,
+    &__select {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    &__label {
+      @apply text-sm text-green-700;
+    }
+    &__select {
+      @apply relative w-auto appearance-none bg-gray-800-spotify font-semibold text-sm leading-tight rounded border border-solid border-green-900 px-2 pr-6 py-1 ml-2;
+      background-position: right 0.45rem center;
+      &:hover {
+        @apply border-green-500;
+      }
+      &:focus {
+        @apply border-green-500;
+        outline: none;
+      }
+    }
+  }
+  .footer__navigation {
+    &__page-btn,
+    &__info,
+    &__page-info {
+      @apply text-sm text-green-700;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    &__page-btn {
+      @apply bg-gray-800-spotify rounded no-underline text-green-600 font-semibold uppercase leading-tight select-none px-2 py-1 cursor-pointer whitespace-no-wrap ml-4;
+      &:hover {
+        @apply bg-gray-700-spotify text-green-500;
+      }
+      &:focus {
+        @apply outline-none shadow-outline bg-gray-700-spotify text-green-600;
+      }
+      @screen md {
+        @apply ml-0;
+      }
+      &.disabled,
+      &.disabled:hover {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+      .chevron {
+        &.left {
+          &::after {
+            @apply hidden absolute;
+            font-family: 'Font Awesome 5 Solid';
+            content: '\f053';
+          }
+          [data-fa-pseudo-element=':after'] {
+            @apply text-xs;
+          }
+        }
+        &.right {
+          &::after {
+            @apply hidden absolute;
+            font-family: 'Font Awesome 5 Solid';
+            content: '\f053';
+          }
+          [data-fa-pseudo-element=':after'] {
+            @apply text-xs;
+            transform: rotate(180deg);
+          }
+        }
+      }
+    }
+    &__page-info {
+      @apply hidden text-sm mx-2;
+      @screen md {
+        display: inline-block;
+      }
+    }
+    &__info {
+      @apply text-sm mx-2;
+      display: inline-block;
+    }
+    &__page-info {
+      &__current-entry {
+        @apply px-2 py-1 ml-2 mr-1 bg-gray-800-spotify leading-tight font-semibold w-12 rounded border border-solid border-green-900;
+        text-align: center;
+        display: inline-block;
+        &:hover {
+          @apply border-green-500;
+        }
+        &:focus {
+          @apply border-green-500;
+          outline: none;
+        }
+      }
+    }
+  }
+}

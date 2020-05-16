@@ -1,0 +1,6 @@
+.vgt-table {
+  &.bordered td:not(:last-child),
+  &.bordered th:not(:last-child) {
+    @apply border-r border-green-900;
+  }
+}
