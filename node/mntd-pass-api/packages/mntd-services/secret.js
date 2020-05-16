@@ -12,7 +12,7 @@ module.exports = {
    * @param {string} name
    * @param {string} value
    */
-  async createSecret(username, name, value) {
+  async createSecret(username, name, value, category) {
     const user = await db.User.findOne({ where: { username } })
 
     if (!user) throw new Error('User not found')
@@ -25,7 +25,8 @@ module.exports = {
     return db.Secret.create({
       username,
       name,
-      value: encrypted
+      value: encrypted,
+      category
     })
   },
 
