@@ -1,37 +1,38 @@
-"use strict";
-const { hashPassword, generateRandomKey } = require("@mntd/crypto");
+'use strict'
+const { hashPassword, generateRandomKey } = require('@mntd/crypto')
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
-    "User",
+    'User',
     {
       username: DataTypes.STRING,
       password: DataTypes.STRING,
+      role: DataTypes.STRING,
       fullName: {
         type: DataTypes.STRING,
-        field: "full_name",
+        field: 'full_name'
       },
       randomKey: {
         type: DataTypes.STRING,
-        field: "random_key",
-      },
+        field: 'random_key'
+      }
     },
     {
       underscored: true,
-      tableName: "users",
+      tableName: 'users',
       hooks: {
         beforeCreate: async (user, options) => {
-          user.password = await hashPassword(user.password);
-          user.randomKey = await generateRandomKey();
-        },
-      },
+          user.password = await hashPassword(user.password)
+          user.randomKey = await generateRandomKey()
+        }
+      }
     }
-  );
+  )
   User.associate = function (models) {
     User.hasMany(models.Secret, {
-      sourceKey: "username",
-      foreignKey: "username",
-      as: "secrets",
-    });
-  };
-  return User;
-};
+      sourceKey: 'username',
+      foreignKey: 'username',
+      as: 'secrets'
+    })
+  }
+  return User
+}
