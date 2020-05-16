@@ -19,6 +19,7 @@ async function authentication(fastify, options) {
     properties: {
       username: { type: 'string' },
       fullName: { type: 'string' },
+      role: { type: 'string' },
       token: { type: 'string' },
       createdAt: { type: 'string' }
     }
@@ -55,6 +56,7 @@ async function authentication(fastify, options) {
         req.user = {
           username: user.username,
           fullName: user.fullName,
+          role: user.role,
           createdAt: user.createdAt
         }
       } else {
