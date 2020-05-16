@@ -1,0 +1,8 @@
+.vgt-table {
+  &.striped tbody tr:nth-of-type(odd) td {
+    @apply bg-gray-700-spotify;
+  }
+  &.striped tbody tr.clickable:hover td {
+    @apply bg-gray-700-spotify;
+  }
+}

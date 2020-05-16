@@ -1,0 +1,67 @@
+.vgt-table {
+  & th {
+    @apply bg-gray-800-spotify font-semibold uppercase text-sm text-gray-700-spotify py-2 px-4;
+    vertical-align: middle;
+    position: relative;
+    &.sorting {
+      cursor: pointer;
+      &.sorting:after {
+        @apply hidden absolute;
+        font-family: 'Font Awesome 5 Solid';
+        content: '\f063';
+      }
+      &.sorting:before {
+        @apply hidden;
+        font-family: 'Font Awesome 5 Solid';
+        content: '\f062';
+      }
+      .svg-inline--fa {
+        @apply absolute opacity-50;
+        font-size: 0.6rem;
+        bottom: 0.9rem;
+      }
+      [data-fa-pseudo-element=':before'] {
+        right: 1.3rem;
+      }
+      [data-fa-pseudo-element=':after'] {
+        right: 0.6rem;
+      }
+    }
+    &.sorting-asc {
+      [data-fa-pseudo-element=':before'] {
+        @apply opacity-100;
+      }
+    }
+    &.sorting-desc {
+      [data-fa-pseudo-element=':after'] {
+        @apply opacity-100;
+      }
+    }
+  }
+  & th.line-numbers,
+  & th.vgt-checkbox-col {
+    @apply border-r border-gray-700-spotify py-0 px-4;
+    word-wrap: break-word;
+    width: 25px;
+    text-align: center;
+  }
+  & th.vgt-checkbox-col {
+    padding-top: 0.4rem;
+  }
+  & th.filter-th {
+    @apply py-2 px-4;
+  }
+  th.vgt-row-header {
+    @apply border-t-2 border-b-2 border-gray-700-spotify;
+  }
+  thead {
+    @apply border-b-2 border-gray-700-spotify;
+    th {
+      vertical-align: bottom;
+      padding-right: 1.8rem;
+      &.vgt-checkbox-col {
+        vertical-align: middle;
+      }
+    }
+  }
+}
