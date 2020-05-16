@@ -1,6 +1,6 @@
 import moment from 'moment'
 import { BaseTransformer } from './Base'
-moment.locale('es')
+moment.locale('en')
 export default class SecretsTransformer extends BaseTransformer {
   static fetch(secret) {
     console.log(secret)
