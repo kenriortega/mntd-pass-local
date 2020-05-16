@@ -59,7 +59,7 @@ module.exports = async function (fastify, options) {
   fastify.post(
     '/users',
     {
-      preValidation: fastify.auth([fastify.validateJWT]),
+      // preValidation: fastify.auth([fastify.validateJWT]),
       schema: {
         body: 'createUser#',
         response: {

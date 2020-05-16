@@ -94,7 +94,7 @@ export default {
       } catch (err) {
         this.$emit('showError', {
           statusCode: 500,
-          error: 'Faild to Copy'
+          error: 'Failed to Copy'
         })
       }
 
