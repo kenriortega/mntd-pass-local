@@ -36,7 +36,7 @@
             </ul>
             <!-- end CardView Secrets -->
             <!-- TableView  Secrets -->
-            <div v-else><h1>Table</h1></div>
+            <SecretsTable v-else :secrets="listSecrets" />
             <!-- end TableView Secrets -->
           </div>
         </div>
@@ -50,12 +50,14 @@ import { SecretService, UtilesService } from '@/services/'
 import AlertComponent from '@/components/AlertComponent'
 import TopBar from '@/components/TopBarComponent'
 import Secret from '@/components/SecretComponent'
+import SecretsTable from '@/components/SecretsTable'
 export default {
   name: 'secretsContent',
   components: {
     TopBar,
     AlertComponent,
-    Secret
+    Secret,
+    SecretsTable
   },
   data() {
     return {
@@ -65,7 +67,24 @@ export default {
         data: []
       },
       errorMSG: {},
-      showViews: true
+      showViews: true,
+      columns: [
+        {
+          label: 'CreatedAt',
+          field: 'createdAt',
+          filterable: true
+        },
+        {
+          label: 'Name',
+          field: 'name',
+          filterable: true
+        },
+        {
+          label: 'Category',
+          field: 'category',
+          filterable: true
+        }
+      ]
     }
   },
   computed: {
