@@ -5,14 +5,15 @@ module.exports = (sequelize, DataTypes) => {
     {
       username: DataTypes.STRING,
       name: DataTypes.STRING,
-      value: DataTypes.STRING
+      value: DataTypes.STRING,
+      category: DataTypes.STRING
     },
     {
       underscored: true,
       tableName: 'secrets'
     }
   )
-  Secret.associate = function(models) {
+  Secret.associate = function (models) {
     Secret.belongsTo(models.User, {
       targetKey: 'username',
       foreignKey: 'username',
