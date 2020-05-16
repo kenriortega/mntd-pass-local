@@ -1,4 +1,4 @@
 # mntd-pass-local
-Is an version of mntd-envivo project
+It's a version of mntd-envivo project
 
-## The idea is learn node.js and javascript
+## The idea is to learn node.js and javascript
