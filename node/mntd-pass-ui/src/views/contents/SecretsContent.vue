@@ -7,12 +7,13 @@
         <h2 class="mt-18 text-5xl font-semibold text-white">Secrets</h2>
         <div class="mt-10">
           <h3 class="font-semiblod text-sm border-b border-gray-900 pb-2">
-            <strong class="text-xl text-green-300">{{
-              user.fullName || user.username
-            }}</strong>
-            have
+            Hello
+            <strong class="text-xl text-green-300">
+              {{ user.fullName || user.username }}</strong
+            >
+            , you have
             <strong class="text-xl text-green-300">{{ data.count }}</strong>
-            Secrets
+            secrets
             <i
               :class="
                 `ml-4 mr-2 cursor-pointer fa fa-${
