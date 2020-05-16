@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       username: DataTypes.STRING,
       name: DataTypes.STRING,
-      value: DataTypes.STRING
-      // TODO: ADD field category for visualize in a frontend
+      value: DataTypes.STRING,
+      category: DataTypes.STRING
     },
     {
       underscored: true,
