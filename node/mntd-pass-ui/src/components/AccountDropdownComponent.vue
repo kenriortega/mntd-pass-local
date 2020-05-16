@@ -24,20 +24,20 @@
         href="#"
         class="block px-4 py-2 text-gray-700-spotify rounded hover:bg-green-900 hover:text-white"
       >
-        <i class="mr-2 fa fa-user"></i>profile</a
+        <i class="mr-2 fa fa-user"></i>Profile</a
       >
       <a
         href="#"
         class="block px-4 py-2 text-gray-700-spotify rounded hover:bg-green-900 hover:text-white"
       >
-        <i class="mr-2 fa fa-bell"></i>notification</a
+        <i class="mr-2 fa fa-bell"></i>Notification</a
       >
       <a
         href="#"
         class="block px-4 py-2 text-gray-700-spotify rounded hover:bg-green-900 hover:text-white"
         @click="logout()"
       >
-        <i class="mr-2 fa fa-sign-out-alt"></i>log out</a
+        <i class="mr-2 fa fa-sign-out-alt"></i>Log out</a
       >
     </div>
   </div>

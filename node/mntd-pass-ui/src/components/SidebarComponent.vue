@@ -100,7 +100,7 @@ export default {
         },
         {
           id: Math.random().toString(),
-          name: 'Managedment',
+          name: 'Management',
           subitems: [
             {
               id: Math.random().toString(),
