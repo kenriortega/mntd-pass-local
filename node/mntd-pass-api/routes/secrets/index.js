@@ -8,6 +8,7 @@ module.exports = async function (fastify, options) {
     properties: {
       username: { type: 'string' },
       name: { type: 'string' },
+      category: { type: 'string' },
       createdAt: { type: 'string' }
     }
   })
@@ -50,9 +51,10 @@ module.exports = async function (fastify, options) {
     properties: {
       username: { type: 'string' },
       name: { type: 'string' },
+      category: { type: 'string' },
       value: { type: 'string' }
     },
-    required: ['username', 'name', 'value']
+    required: ['username', 'name', 'value', 'category']
   })
   fastify.post(
     '/secrets',
@@ -66,9 +68,9 @@ module.exports = async function (fastify, options) {
       }
     },
     async (req, reply) => {
-      const { username, name, value } = req.body
+      const { username, name, value, category } = req.body
       reply.code(201)
-      return secretServices.createSecret(username, name, value)
+      return secretServices.createSecret(username, name, value, category)
     }
   )
   fastify.addSchema({
@@ -100,6 +102,7 @@ module.exports = async function (fastify, options) {
     properties: {
       username: { type: 'string' },
       name: { type: 'string' },
+      category: { type: 'string' },
       value: { type: 'string' },
       createdAt: { type: 'string' }
     }

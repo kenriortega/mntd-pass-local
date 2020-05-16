@@ -8,6 +8,7 @@ module.exports = async function (fastify, options) {
     properties: {
       username: { type: 'string' },
       fullName: { type: 'string' },
+      role: { type: 'string' },
       createdAt: { type: 'string' }
     }
   })
@@ -52,6 +53,7 @@ module.exports = async function (fastify, options) {
     properties: {
       username: { type: 'string' },
       password: { type: 'string' },
+      role: { type: 'string' },
       fullName: { type: 'string' }
     },
     require: ['username', 'password']
@@ -68,9 +70,9 @@ module.exports = async function (fastify, options) {
       }
     },
     async (req, reply) => {
-      const { username, password, fullName } = req.body
+      const { username, password, fullName, role } = req.body
       reply.code(201)
-      return userServices.createUser(username, password, fullName)
+      return userServices.createUser(username, password, fullName, role)
     }
   )
 
