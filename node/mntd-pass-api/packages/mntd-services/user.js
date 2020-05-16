@@ -10,13 +10,15 @@ module.exports = {
    * @param {string} username
    * @param {string} password
    * @param {string} [fullName=""]
+   * @param {string} [role=""]
    * @returns {User} User
    */
-  async createUser(username, password, fullName = '') {
+  async createUser(username, password, fullName = '', role = 'basic') {
     return db.User.create({
       username,
       password,
-      fullName
+      fullName,
+      role
     })
   },
 
