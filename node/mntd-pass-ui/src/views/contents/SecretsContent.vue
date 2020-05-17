@@ -13,7 +13,7 @@
             >
             , you have
             <strong class="text-xl text-green-300">{{ data.count }}</strong>
-            secrets
+            secrets in total
             <i
               :class="
                 `ml-4 mr-2 cursor-pointer fa fa-${
