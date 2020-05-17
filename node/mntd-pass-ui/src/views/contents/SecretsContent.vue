@@ -27,7 +27,7 @@
             <!-- CardView Secrets -->
             <ul v-if="showViews" class="flex flex-wrap justify-center">
               <secret
-                v-for="(secret, key) in listSecrets"
+                v-for="(secret, key) in filterSecrets"
                 :key="secret.name"
                 :secret="secret"
                 :user="user"
@@ -52,6 +52,8 @@ import AlertComponent from '@/components/AlertComponent'
 import TopBar from '@/components/TopBarComponent'
 import Secret from '@/components/SecretComponent'
 import SecretsTable from '@/components/SecretsTable'
+import { bus } from '@/main.js'
+
 export default {
   name: 'secretsContent',
   components: {
@@ -67,6 +69,7 @@ export default {
         count: 0,
         data: []
       },
+      filter: '',
       errorMSG: {},
       showViews: true,
       columns: [
@@ -91,6 +94,16 @@ export default {
   computed: {
     listSecrets() {
       return this.data.data
+    },
+    filterSecrets() {
+      bus.$on('filterByName', data => {
+        this.filter = data
+      })
+      if (this.filter === 'all') {
+        return this.data.data
+      } else {
+        return this.data.data.filter(el => el.category.match(this.filter))
+      }
     },
     isHaveSecrets() {
       if (this.data.data.length > 0) {
@@ -128,6 +141,10 @@ export default {
     },
     showError(error) {
       this.errorMSG = error
+    },
+    changeView() {
+      this.showViews = !this.showViews
+      this.data.data = UtilesService.getItemStorage('secrets')
     }
   }
 }

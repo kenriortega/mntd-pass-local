@@ -37,11 +37,17 @@
           {{ e.name }}
         </h3>
         <ul
-          :class="`leading-extra-loose ${e.name !== 'category' ? 'mb-12' : ''}`"
+          :class="
+            `leading-extra-loose ${e.name !== 'categories' ? 'mb-40' : ''}`
+          "
         >
           <li v-for="sub in e.subitems" :key="sub.id" class="truncate">
             <i :class="`fa fa-${sub.icon}`"></i>
-            <a href="" class="ml-2 hover:text-green-700">{{ sub.name }}</a>
+            <span
+              class="ml-2 border-b hover:border-green-700"
+              @click="filterByName(e.name, sub.name)"
+              >{{ sub.name }}</span
+            >
           </li>
         </ul>
       </div>
@@ -50,8 +56,12 @@
     <div
       class="border-t border-gray-800 h-16 px-4 py-2 flex items-center group"
     >
-      <i class="fa fa-sign-out-alt"></i>
-      <a href="" class="ml-2 hover:text-white" @click="logout()">Log out</a>
+      <i class="fa fa-tools"></i>
+      <span class="ml-2 hover:text-white"
+        ><strong> {{ whoami.role }}</strong></span
+      >
+      <!-- <i class="fa fa-sign-out-alt"></i>
+      <a href="" class="ml-2 hover:text-white" @click="logout()">Log out</a> -->
     </div>
   </div>
 </template>
@@ -59,12 +69,14 @@
 <script>
 import ROUTES from '@/constant/routes'
 import { bus } from '@/main.js'
+import { UtilesService } from '@/services/'
 
 export default {
   name: 'sidebar',
   data() {
     return {
       isToggle: false,
+      whoami: {},
       sidebarIndexElems: [
         {
           id: Math.random().toString(),
@@ -80,9 +92,15 @@ export default {
           subitems: [
             {
               id: Math.random().toString(),
-              name: 'Server',
+              name: 'ALL',
+              icon: 'database',
+              filter: 'all'
+            },
+            {
+              id: Math.random().toString(),
+              name: 'Servers',
               icon: 'server',
-              filter: 'server'
+              filter: 'servers'
             },
             {
               id: Math.random().toString(),
@@ -119,16 +137,27 @@ export default {
       ]
     }
   },
+  mounted() {},
   created() {
+    this.getUserFromLocalStorage()
+
     bus.$on('toggleSidebar', data => (this.isToggle = data))
   },
   methods: {
+    getUserFromLocalStorage() {
+      this.whoami = UtilesService.getItemStorage('user')
+    },
     logout() {
       window.localStorage.clear()
       this.$router.push({ name: ROUTES.LOGIN.name })
     },
     activeRoute() {
       return this.$route.name
+    },
+    filterByName(category, filter) {
+      if (category === 'categories') {
+        bus.$emit('filterByName', filter.toLowerCase())
+      }
     }
   }
 }
