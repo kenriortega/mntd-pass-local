@@ -16,6 +16,10 @@
               <i class="fa fa-lock text-green-700"></i>
               {{ secret.name }}
             </p>
+            <p class="text-xl leading-tight">
+              <i class="fa fa-book text-green-700"></i>
+              {{ secret.category }}
+            </p>
             <p class="text-sm leading-tight text-gray-600">
               <i class="fa fa-clock text-green-700"></i>
               {{ secret.createdAt }}
