@@ -9,6 +9,10 @@ const ROUTES = {
     path: '/',
     name: 'login'
   },
+  PROFILE: {
+    path: '/profile',
+    name: 'profile'
+  },
   ERROR404: {
     path: '*',
     name: 'notFound404'

@@ -83,6 +83,12 @@ export default {
           name: 'Secrets',
           icon: 'lock',
           route: ROUTES.SECRETS.name
+        },
+        {
+          id: Math.random().toString(),
+          name: 'Profile',
+          icon: 'user',
+          route: ROUTES.PROFILE.name
         }
       ],
       sidebarOtherElms: [
@@ -118,19 +124,13 @@ export default {
         },
         {
           id: Math.random().toString(),
-          name: 'Management',
+          name: 'management',
           subitems: [
             {
               id: Math.random().toString(),
               name: 'Secrets',
               icon: 'plus',
               filter: 'secret-create'
-            },
-            {
-              id: Math.random().toString(),
-              name: 'Profile',
-              icon: 'plus',
-              filter: 'user-create'
             }
           ]
         }
@@ -157,6 +157,9 @@ export default {
     filterByName(category, filter) {
       if (category === 'categories') {
         bus.$emit('filterByName', filter.toLowerCase())
+        return
+      } else if (category === 'management') {
+        console.log(filter)
       }
     }
   }
