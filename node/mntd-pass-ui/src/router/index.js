@@ -34,4 +34,49 @@ const router = new VueRouter({
   routes
 })
 
+// router.beforeEach((to, from, next) => {
+//   // hiding search box
+
+//   // redirect to login page if not logged in and trying to access a restricted page
+//   const publicPages = ['/login'];
+//   const authRequired = !publicPages.includes(to.path);
+
+//   // todo: Try with jwt decoding for checking if it returns an Expired error.
+//   let loggedIn = false
+//   if (localStorage.getItem('token')) {
+//       loggedIn = true
+//   } else { loggedIn = false }
+
+//   if (loggedIn && to.path == '/login') {
+//       return next('/home')
+//   } else
+//       if (authRequired && !loggedIn) {
+//           return next('/login');
+//       }
+
+//   // const authorizedRole = to.meta.roles.includes(store.getters.getLoggedUserRoleAlias)
+//   if (loggedIn) {
+//       const userObject = JSON.parse(localStorage.getItem('user'));
+//       try {
+//           const authorizedRole = to.meta.roles.includes(userObject.roleAlias)
+//           console.log(userObject.roleAlias);
+//           if (to.path == '/login') {
+//               return next('/home')
+//           }
+
+//           if (!authorizedRole) {
+
+//               console.log('Unauthorized way to access Route')
+//               return next('/home')
+//           }
+//       } catch (error) {
+//           return next('/home')
+
+//       }
+
+//   }
+
+//   next();
+// })
+
 export default router
