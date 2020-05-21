@@ -44,7 +44,7 @@
           <li v-for="sub in e.subitems" :key="sub.id" class="truncate">
             <i :class="`fa fa-${sub.icon}`"></i>
             <span
-              class="ml-2 border-b hover:border-green-700"
+              class="ml-2 border-b hover:border-green-700 cursor-pointer"
               @click="filterByName(e.name, sub.name)"
               >{{ sub.name }}</span
             >
