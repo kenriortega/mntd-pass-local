@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- TODO: add styles to table component -->
     <!-- select options -->
     <div class="table-style">
       <input
