@@ -1,114 +1,133 @@
 <template>
-  <div>
+  <div class="container">
     <!-- TODO: add styles to table component -->
     <!-- select options -->
-    <div class="table-style">
-      <input
-        class="input"
-        type="text"
-        v-model="search"
-        placeholder="Search..."
-        @input="resetPagination()"
-        style="width: 250px;"
-      />
-      <div class="control">
-        <div class="select">
-          <select v-model="length" @change="resetPagination()">
-            <option value="10">10</option>
-            <option value="20">20</option>
-            <option value="30">30</option>
-          </select>
-        </div>
+    <div class="flex flex-wrap -mx-3 mb-2">
+      <div class="flex items-center border-b border-b-2 border-green-800 py-2">
+        <i class="mr-2 fa fa-search text-gray-500"></i>
+        <input
+          class="appearance-none bg-transparent border-none w-full text-gray-500  mr-3 py-1 px-2 leading-tight focus:outline-none"
+          type="text"
+          v-model="search"
+          placeholder="Search..."
+          @input="resetPagination()"
+          style="width: 250px;"
+        />
+      </div>
+      <div class="secrets__row-count">
+        <select
+          class="secrets__row-count__select"
+          v-model="length"
+          @change="resetPagination()"
+        >
+          <option class="secrets__row-count__label" value="10">10</option>
+          <option class="secrets__row-count__label" value="20">20</option>
+          <option class="secrets__row-count__label" value="30">30</option>
+        </select>
       </div>
     </div>
+
     <!-- end select options -->
     <!-- table -->
-    <table class="table-fixed">
-      <thead>
-        <tr>
-          <th
-            v-for="column in columns"
-            :key="column.name"
-            @click="sortBy(column.name)"
-            :class="
-              sortKey === column.name
-                ? sortOrders[column.name] > 0
-                  ? 'sorting_asc'
-                  : 'sorting_desc'
-                : 'sorting'
-            "
-            style="width: 40%; cursor: pointer;"
-          >
-            {{ column.label }}
-          </th>
-        </tr>
-      </thead>
+    <div class="flex flex-wrap -mx-3 mb-2">
+      <table class="table-fixed secret-table">
+        <thead>
+          <tr>
+            <th
+              class="mt-8 px-4 py-2 cursor-pointer "
+              v-for="column in columns"
+              :key="column.name"
+              @click="sortBy(column.name)"
+            >
+              <i
+                :class="
+                  sortKey === column.name
+                    ? sortOrders[column.name] > 0
+                      ? 'fa fa-arrow-up'
+                      : 'fa fa-arrow-down'
+                    : 'sorting'
+                "
+              ></i>
+              {{ column.label }}
+            </th>
+          </tr>
+        </thead>
 
-      <tbody>
-        <tr v-for="(r, i) in paginatedSecrets" :key="i" @click="onRowClick(r)">
-          <td class="border px-4 py-2 text-center">{{ r.createdAt }}</td>
-          <td class="border px-4 py-2">{{ r.name }}</td>
-          <td class="border px-4 py-2">{{ r.category }}</td>
-          <td class="border px-4 py-2">Get Value | Copy Secret</td>
-        </tr>
-      </tbody>
-    </table>
+        <tbody>
+          <tr
+            class="clickable"
+            v-for="(r, i) in paginatedSecrets"
+            :key="i"
+            @click="onRowClick(r)"
+          >
+            <td class="bordered px-4 py-2 text-center">{{ r.createdAt }}</td>
+            <td class="bordered px-4 py-2 text-center">{{ r.name }}</td>
+            <td class="bordered px-4 py-2 text-center">{{ r.category }}</td>
+            <td class="bordered px-4 py-2 text-center">
+              Get Value | Copy Secret
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <!-- end table -->
     <!-- pagination Component -->
-    <div>
-      <nav class="pagination" v-if="!tableShow.showdata">
-        <span class="page-stats"
+    <div
+      class="mt-8 text-center font-semibold text-gray-700-spotify hover:text-green-500"
+    >
+      <div class="" v-if="!tableShow.showdata">
+        <span class=""
           >{{ pagination.from }} - {{ pagination.to }} of
           {{ pagination.total }}</span
         >
         <a
           v-if="pagination.prevPageUrl"
-          class="btn btn-sm btn-primary pagination-previous"
+          class=""
           @click="--pagination.currentPage"
         >
           Prev
         </a>
-        <a class="btn btn-sm btn-primary pagination-previous" v-else disabled>
+        <a class="" v-else disabled>
           Prev
         </a>
         <a
           v-if="pagination.nextPageUrl"
-          class="btn btn-sm pagination-next"
+          class=""
           @click="++pagination.currentPage"
         >
           Next
         </a>
-        <a class="btn btn-sm btn-primary pagination-next" v-else disabled>
+        <a class="" v-else disabled>
           Next
         </a>
-      </nav>
-      <nav class="pagination" v-else>
-        <span class="page-stats">
+      </div>
+      <div class="" v-else>
+        <span class="">
           {{ pagination.from }} - {{ pagination.to }} of
           {{ filteredSecrets.length }}
           <span v-if="`filteredSecrets.length < pagination.total`"></span>
         </span>
         <a
           v-if="pagination.prevPage"
-          class="btn btn-sm btn-primary pagination-previous"
+          class=""
           @click="--pagination.currentPage"
         >
           Prev
         </a>
-        <a class="btn btn-sm pagination-previous btn-primary" v-else disabled>
+        <a class="" v-else disabled>
           Prev
         </a>
         <a
           v-if="pagination.nextPage"
-          class="btn btn-sm btn-primary pagination-next"
+          class=""
           @click="++pagination.currentPage"
         >
           Next
         </a>
-        <a class="btn btn-sm pagination-next btn-primary" v-else disabled>
+        <a class="" v-else disabled>
           Next
         </a>
-      </nav>
+      </div>
     </div>
     <!-- end pagination -->
   </div>
@@ -207,3 +226,4 @@ export default {
   }
 }
 </script>
+<style src="@/assets/components/secretsTable.scss" lang="scss" scoped></style>
