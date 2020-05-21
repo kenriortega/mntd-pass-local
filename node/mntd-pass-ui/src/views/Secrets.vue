@@ -14,7 +14,7 @@
 <script>
 // @ is an alias to /src
 import SidebarComponent from '@/components/SidebarComponent'
-import SecretsContent from '@/views/contents/SecretsContent'
+import SecretsContent from '@/views/secrets/index'
 export default {
   name: 'Secrets',
   components: {
