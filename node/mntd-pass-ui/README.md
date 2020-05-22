@@ -1,4 +1,4 @@
-# rnto-ui
+# Mntd-pass-ui app to store secrets
 
 ## Project setup
 
