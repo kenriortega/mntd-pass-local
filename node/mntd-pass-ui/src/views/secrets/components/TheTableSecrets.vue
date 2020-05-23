@@ -1,8 +1,7 @@
 <template>
   <div class="container">
-    <!-- TODO: add styles to table component -->
     <!-- select options -->
-    <div class="flex flex-wrap -mx-3 mb-2">
+    <div class="mt-8 flex flex-wrap -mx-3 mb-2">
       <div class="flex items-center border-b border-b-2 border-green-800 py-2">
         <i class="mr-2 fa fa-search text-gray-500"></i>
         <input
@@ -56,15 +55,39 @@
         <tbody>
           <tr
             class="clickable"
-            v-for="(r, i) in paginatedSecrets"
-            :key="i"
-            @click="onRowClick(r)"
+            v-for="(row, indice) in paginatedSecrets"
+            :key="indice"
+            @click="onRowClick(row)"
           >
-            <td class="bordered px-4 py-2 text-center">{{ r.createdAt }}</td>
-            <td class="bordered px-4 py-2 text-center">{{ r.name }}</td>
-            <td class="bordered px-4 py-2 text-center">{{ r.category }}</td>
+            <td class="bordered px-4 py-2 text-center">{{ row.createdAt }}</td>
+            <td class="bordered px-4 py-2 text-center">{{ row.name }}</td>
+            <td class="bordered px-4 py-2 text-center">{{ row.category }}</td>
             <td class="bordered px-4 py-2 text-center">
-              Get Value | Copy Secret
+              <button
+                class="text-green-500 hover:text-white hover:bg-green-500 border border-green-500 text-xs font-semibold rounded-full px-4 py-1 leading-normal"
+                @click="
+                  changed !== indice
+                    ? getValueFromSecret(row.name, indice)
+                    : copyToClipBoard(indice)
+                "
+              >
+                <i
+                  :class="
+                    `fa fa-${
+                      changed === false ? 'lock' : 'clipboard'
+                    } text-green-700`
+                  "
+                ></i>
+                {{ changed !== indice ? 'Get Secret' : 'Copy Secret' }}
+              </button>
+              <span>
+                <p
+                  :class="`text-${isCoping === indice ? 'green' : 'gray'}-700`"
+                >
+                  {{ changed === indice ? value : '' }}
+                </p></span
+              >
+              <input type="hidden" :id="`clipboard-${indice}`" :value="value" />
             </td>
           </tr>
         </tbody>
@@ -72,36 +95,28 @@
     </div>
     <!-- end table -->
     <!-- pagination Component -->
-    <div
-      class="mt-8 text-center font-semibold text-gray-700-spotify hover:text-green-500"
-    >
-      <div class="" v-if="!tableShow.showdata">
-        <span class=""
-          >{{ pagination.from }} - {{ pagination.to }} of
-          {{ pagination.total }}</span
-        >
+    <div class="pagination">
+      <div class="pagination__show" v-if="!tableShow.showdata">
+        <span class="">
+          {{ pagination.from }} - {{ pagination.to }} of
+          {{ pagination.total }}
+        </span>
         <a
           v-if="pagination.prevPageUrl"
-          class=""
+          class="btn__pagination-previous"
           @click="--pagination.currentPage"
+          >Prev</a
         >
-          Prev
-        </a>
-        <a class="" v-else disabled>
-          Prev
-        </a>
+        <a class="btn__pagination-previouds" v-else disabled>Prev</a>
         <a
           v-if="pagination.nextPageUrl"
-          class=""
+          class="btn__pagination-next"
           @click="++pagination.currentPage"
+          >Next</a
         >
-          Next
-        </a>
-        <a class="" v-else disabled>
-          Next
-        </a>
+        <a class="btn__pagination-nextd" v-else disabled>Next</a>
       </div>
-      <div class="" v-else>
+      <div class="pagination__show" v-else>
         <span class="">
           {{ pagination.from }} - {{ pagination.to }} of
           {{ filteredSecrets.length }}
@@ -109,24 +124,18 @@
         </span>
         <a
           v-if="pagination.prevPage"
-          class=""
+          class="btn__pagination-previous"
           @click="--pagination.currentPage"
+          >Prev</a
         >
-          Prev
-        </a>
-        <a class="" v-else disabled>
-          Prev
-        </a>
+        <a class="btn__pagination-previousd" v-else disabled>Prev</a>
         <a
           v-if="pagination.nextPage"
-          class=""
+          class="btn__pagination-next"
           @click="++pagination.currentPage"
+          >Next</a
         >
-          Next
-        </a>
-        <a class="" v-else disabled>
-          Next
-        </a>
+        <a class="btn__pagination-nextd" v-else disabled>Next</a>
       </div>
     </div>
     <!-- end pagination -->
@@ -134,12 +143,18 @@
 </template>
 
 <script>
+import { SecretService } from '@/services/'
+
 export default {
   name: 'TheTableSecrets',
   props: {
     rowsSecrets: {
       type: Array,
       default: () => []
+    },
+    user: {
+      type: Object,
+      default: () => {}
     }
   },
   data() {
@@ -169,7 +184,11 @@ export default {
         prevPage: '',
         from: '',
         to: ''
-      }
+      },
+      isCoping: null,
+      changed: null,
+      value: ''
+      // msg: null,
     }
   },
   computed: {
@@ -222,6 +241,37 @@ export default {
     },
     onRowClick({ createdAt, name, category }) {
       console.log('Clicked! +', createdAt, name, category)
+    },
+    async getValueFromSecret(name, indice) {
+      this.changed = indice
+      let { username, token } = this.user
+      try {
+        let res = await SecretService.getValueSecret(username, name, token)
+        this.value = res.data.value
+      } catch (err) {
+        this.$emit('showError', err.response.data)
+        this.changed = null
+      }
+    },
+    copyToClipBoard(indice) {
+      this.isCoping = indice
+      let copyToClibBoard = document.querySelector(`#clipboard-${indice}`)
+      copyToClibBoard.setAttribute('type', 'text') // 不是 hidden 才能複製
+      copyToClibBoard.select()
+      try {
+        let successful = document.execCommand('copy')
+        this.msg = successful ? 'successful' : 'unsuccessful'
+        // Migrar a toast o sweet alert
+      } catch (err) {
+        this.$emit('showError', {
+          statusCode: 500,
+          error: 'Failed to Copy'
+        })
+      }
+
+      /* unselect the range */
+      copyToClibBoard.setAttribute('type', 'hidden')
+      window.getSelection().removeAllRanges()
     }
   }
 }

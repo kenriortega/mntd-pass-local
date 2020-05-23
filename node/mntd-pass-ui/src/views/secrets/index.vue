@@ -23,7 +23,7 @@
               @click="showViews = !showViews"
             ></i>
           </h3>
-          <div class="flex items-center mt-4 -mx-2" v-if="isHaveSecrets">
+          <div class="flex flex-1 items-center mt-4 -mx-2" v-if="isHaveSecrets">
             <!-- CardView Secrets -->
             <ul v-if="showViews" class="flex flex-wrap justify-center">
               <secret
@@ -37,7 +37,12 @@
             </ul>
             <!-- end CardView Secrets -->
             <!-- TableView  Secrets -->
-            <TheTableSecrets v-else :rowsSecrets="listSecrets" />
+            <TheTableSecrets
+              v-else
+              :rowsSecrets="listSecrets"
+              :user="user"
+              @showError="showError($event)"
+            />
             <!-- end TableView Secrets -->
           </div>
         </div>
