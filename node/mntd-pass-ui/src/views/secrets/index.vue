@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { SecretService, UtilesService } from '@/services/'
+import { SecretService, UtilsService } from '@/services/'
 import AlertComponent from '@/components/AlertComponent'
 import TopBar from '@/components/TopBarComponent'
 import Secret from '@/components/SecretComponent'
@@ -98,15 +98,15 @@ export default {
   },
   async mounted() {
     this.getUserFromLocalStorage()
-    if (UtilesService.getItemStorage('secrets')) {
-      this.data = UtilesService.getItemStorage('secrets')
+    if (UtilsService.getItemStorage('secrets')) {
+      this.data = UtilsService.getItemStorage('secrets')
     } else {
       this.getSecretsByUsername()
     }
   },
   methods: {
     getUserFromLocalStorage() {
-      this.user = UtilesService.getItemStorage('user')
+      this.user = UtilsService.getItemStorage('user')
     },
     async getSecretsByUsername() {
       let { username, token } = this.user
@@ -116,7 +116,7 @@ export default {
         if (res.status === 200) {
           this.data = res.data
 
-          UtilesService.saveLocalStorage('secrets', this.data)
+          UtilsService.saveLocalStorage('secrets', this.data)
         }
       } catch (err) {
         this.errorMSG = err.response.data
@@ -127,7 +127,7 @@ export default {
     },
     changeView() {
       this.showViews = !this.showViews
-      this.data.data = UtilesService.getItemStorage('secrets')
+      this.data.data = UtilsService.getItemStorage('secrets')
     }
   }
 }

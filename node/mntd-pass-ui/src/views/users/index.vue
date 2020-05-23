@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { UtilesService } from '@/services/'
+import { UtilsService } from '@/services/'
 
 import AlertComponent from '@/components/AlertComponent'
 import TopBar from '@/components/TopBarComponent'
@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     getUserFromLocalStorage() {
-      this.user = UtilesService.getItemStorage('user')
+      this.user = UtilsService.getItemStorage('user')
     }
   }
 }

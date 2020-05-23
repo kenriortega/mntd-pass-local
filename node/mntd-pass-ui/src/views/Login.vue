@@ -38,7 +38,7 @@
 
 <script>
 import AlertComponent from '@/components/AlertComponent'
-import { AuthService, UtilesService } from '@/services/'
+import { AuthService, UtilsService } from '@/services/'
 
 export default {
   name: 'login',
@@ -60,7 +60,7 @@ export default {
           this.payload.password
         )
         this.user = res.data
-        UtilesService.saveLocalStorage('user', this.user)
+        UtilsService.saveLocalStorage('user', this.user)
         this.$router.push({ name: 'secrets' })
       } catch (err) {
         this.errorMSG = err.response.data

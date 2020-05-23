@@ -69,7 +69,7 @@
 <script>
 import ROUTES from '@/constant/routes'
 import { bus } from '@/main.js'
-import { UtilesService } from '@/services/'
+import { UtilsService } from '@/services/'
 
 export default {
   name: 'sidebar',
@@ -145,7 +145,7 @@ export default {
   },
   methods: {
     getUserFromLocalStorage() {
-      this.whoami = UtilesService.getItemStorage('user')
+      this.whoami = UtilsService.getItemStorage('user')
     },
     logout() {
       window.localStorage.clear()

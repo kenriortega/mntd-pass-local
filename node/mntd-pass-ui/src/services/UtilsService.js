@@ -1,4 +1,4 @@
-class UtilesService {
+class UtilsService {
   saveLocalStorage(key, value) {
     return window.localStorage.setItem(key, JSON.stringify(value))
   }
@@ -7,4 +7,4 @@ class UtilesService {
   }
 }
 
-export default new UtilesService()
+export default new UtilsService()
