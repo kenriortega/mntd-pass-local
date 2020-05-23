@@ -256,12 +256,10 @@ export default {
     copyToClipBoard(indice) {
       this.isCoping = indice
       let copyToClibBoard = document.querySelector(`#clipboard-${indice}`)
-      copyToClibBoard.setAttribute('type', 'text') // 不是 hidden 才能複製
       copyToClibBoard.select()
       try {
         let successful = document.execCommand('copy')
         this.msg = successful ? 'successful' : 'unsuccessful'
-        // Migrar a toast o sweet alert
       } catch (err) {
         this.$emit('showError', {
           statusCode: 500,
@@ -269,7 +267,6 @@ export default {
         })
       }
 
-      /* unselect the range */
       copyToClibBoard.setAttribute('type', 'hidden')
       window.getSelection().removeAllRanges()
     }
