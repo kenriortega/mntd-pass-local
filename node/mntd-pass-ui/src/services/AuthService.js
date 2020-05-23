@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios from '@/http'
+
 import { API_ROUTES } from '../constant/apiRoutes.js'
 class AuthService {
   async auth(username, password) {
