@@ -1,6 +1,5 @@
 import Axios from 'axios'
 import Vue from 'vue'
-// import { UtilsService } from '@/services/'
 const instance = Axios.create({
   baseURL: 'http://localhost:8080/'
 })
