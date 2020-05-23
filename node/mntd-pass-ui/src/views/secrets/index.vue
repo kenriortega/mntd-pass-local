@@ -50,7 +50,7 @@
 import { SecretService, UtilsService } from '@/services/'
 import AlertComponent from '@/components/AlertComponent'
 import TopBar from '@/components/TopBarComponent'
-import Secret from '@/components/SecretComponent'
+import Secret from './components/SecretComponent'
 import TheTableSecrets from './components/TheTableSecrets'
 import { bus } from '@/main.js'
 
