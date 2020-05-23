@@ -28,7 +28,7 @@ npm run lint
 
 - Add logic to create secrets
 - Add component to create secrets
-- Filter secrets by category
+- ~~Filter secrets by category~~
 - Add view for secrets details
 - ~~Add toggle sidebar feature~~
 - Add profile view and password update component
