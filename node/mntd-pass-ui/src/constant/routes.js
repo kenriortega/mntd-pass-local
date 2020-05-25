@@ -9,6 +9,10 @@ const ROUTES = {
     path: '/',
     name: 'login'
   },
+  SIGNUP: {
+    path: '/signup',
+    name: 'signup'
+  },
   PROFILE: {
     path: '/profile',
     name: 'profile'
