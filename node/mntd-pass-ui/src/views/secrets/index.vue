@@ -103,8 +103,10 @@ export default {
   },
   async mounted() {
     this.getUserFromLocalStorage()
-    if (UtilsService.getItemStorage('secrets')) {
-      this.data = UtilsService.getItemStorage('secrets')
+    let { username } = this.user
+
+    if (UtilsService.getItemStorage(`secrets_by_${username}`)) {
+      this.data = UtilsService.getItemStorage(`secrets_by_${username}`)
     } else {
       this.getSecretsByUsername()
     }
@@ -121,7 +123,7 @@ export default {
         if (res.status === 200) {
           this.data = res.data
 
-          UtilsService.saveLocalStorage('secrets', this.data)
+          UtilsService.saveLocalStorage(`secrets_by_${username}`, this.data)
         }
       } catch (err) {
         this.errorMSG = err.response.data
