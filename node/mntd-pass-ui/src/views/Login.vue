@@ -31,6 +31,11 @@
         >
           Sign In
         </button>
+        <router-link
+          to="/signup"
+          class="text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none"
+          >Create an account?</router-link
+        >
       </div>
     </form>
   </div>
