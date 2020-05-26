@@ -44,6 +44,8 @@
 <script>
 import AlertComponent from '@/components/AlertComponent'
 import { AuthService, UtilsService } from '@/services/'
+import moment from 'moment'
+moment.locale('en')
 
 export default {
   name: 'login',
@@ -64,6 +66,7 @@ export default {
           this.payload.username,
           this.payload.password
         )
+        res.data.createdAt = moment(res.data.createdAt).fromNow()
         this.user = res.data
         UtilsService.saveLocalStorage('user', this.user)
         this.$router.push({ name: 'secrets' })
