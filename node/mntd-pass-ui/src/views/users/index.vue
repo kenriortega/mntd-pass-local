@@ -13,7 +13,7 @@
             this is your profile...
           </h3>
           <!-- here profile component -->
-          <CardProfile :user="user" />
+          <CardProfile2 :user="user" />
           <!-- end -->
         </div>
       </div>
@@ -26,13 +26,13 @@ import { UtilsService } from '@/services/'
 
 import AlertComponent from '@/components/AlertComponent'
 import TopBar from '@/components/TopBarComponent'
-import CardProfile from './components/CardProfile'
+import CardProfile2 from './components/OtherCardProfile'
 export default {
   name: 'profile',
   components: {
     TopBar,
     AlertComponent,
-    CardProfile
+    CardProfile2
   },
   data: () => ({
     errorMSG: {},
