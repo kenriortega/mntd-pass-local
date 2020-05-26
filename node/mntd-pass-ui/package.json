@@ -13,6 +13,7 @@
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "moment": "^2.25.3",
+    "v-tooltip": "^2.0.3",
     "vee-validate": "^3.3.0",
     "vue": "^2.6.11",
     "vue-good-table": "^2.19.2",
