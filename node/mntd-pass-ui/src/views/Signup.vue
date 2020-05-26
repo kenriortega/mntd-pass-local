@@ -44,7 +44,7 @@
         <router-link
           to="/"
           class="text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none"
-          >Sign In if you have account</router-link
+          >{{ question }}</router-link
         >
       </div>
     </form>
@@ -64,7 +64,8 @@ export default {
     return {
       payload: {},
       user: {},
-      notificator: {}
+      notificator: {},
+      question: 'Already have an account? Sign In'
     }
   },
   methods: {

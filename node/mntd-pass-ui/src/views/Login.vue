@@ -34,7 +34,7 @@
         <router-link
           to="/signup"
           class="text-gray-500 mr-3 py-1 px-2 leading-tight focus:outline-none"
-          >Create an account?</router-link
+          >{{ question }}</router-link
         >
       </div>
     </form>
@@ -56,7 +56,8 @@ export default {
     return {
       payload: {},
       user: {},
-      errorMSG: {}
+      errorMSG: {},
+      question: 'Don`t have an account? Create Account'
     }
   },
   methods: {
