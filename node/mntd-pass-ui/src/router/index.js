@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import { UtilsService } from '@/services/'
 import ROUTES from '@/constant/routes'
 import Login from '@/views/Login.vue'
 import Signup from '@/views/Signup.vue'
@@ -48,49 +49,43 @@ const router = new VueRouter({
   routes
 })
 
-// router.beforeEach((to, from, next) => {
-//   // hiding search box
+router.beforeEach((to, from, next) => {
+  // redirect to login page if not logged in and trying to access a restricted page
+  const publicPages = [ROUTES.LOGIN.path]
+  const authRequired = !publicPages.includes(to.path)
+  let user = UtilsService.getItemStorage('user')
+  let loggedIn = false
+  if (user) {
+    loggedIn = true
+  } else {
+    loggedIn = false
+  }
 
-//   // redirect to login page if not logged in and trying to access a restricted page
-//   const publicPages = ['/login'];
-//   const authRequired = !publicPages.includes(to.path);
+  if (loggedIn && to.path == ROUTES.LOGIN.path) {
+    return next(ROUTES.SECRETS.path)
+  } else if (authRequired && !loggedIn) {
+    return next(ROUTES.LOGIN.path)
+  }
 
-//   // todo: Try with jwt decoding for checking if it returns an Expired error.
-//   let loggedIn = false
-//   if (localStorage.getItem('token')) {
-//       loggedIn = true
-//   } else { loggedIn = false }
+  // TODO: Check role for acces to admin panel
+  // if (loggedIn) {
+  //   try {
+  //     const authorizedRole = to.meta.roles.includes(user.role)
+  //     console.log(authorizedRole)
+  //     if (to.path == ROUTES.LOGIN.path) {
+  //       return next(ROUTES.SECRETS.path)
+  //     }
 
-//   if (loggedIn && to.path == '/login') {
-//       return next('/home')
-//   } else
-//       if (authRequired && !loggedIn) {
-//           return next('/login');
-//       }
+  //     if (!authorizedRole) {
+  //       console.log('Unauthorized way to access Route')
+  //       return next(ROUTES.SECRETS.path)
+  //     }
+  //   } catch (error) {
+  //     return next(ROUTES.SECRETS.path)
+  //   }
+  // }
 
-//   // const authorizedRole = to.meta.roles.includes(store.getters.getLoggedUserRoleAlias)
-//   if (loggedIn) {
-//       const userObject = JSON.parse(localStorage.getItem('user'));
-//       try {
-//           const authorizedRole = to.meta.roles.includes(userObject.roleAlias)
-//           console.log(userObject.roleAlias);
-//           if (to.path == '/login') {
-//               return next('/home')
-//           }
-
-//           if (!authorizedRole) {
-
-//               console.log('Unauthorized way to access Route')
-//               return next('/home')
-//           }
-//       } catch (error) {
-//           return next('/home')
-
-//       }
-
-//   }
-
-//   next();
-// })
+  next()
+})
 
 export default router
