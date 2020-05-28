@@ -2,7 +2,7 @@
   <!-- component -->
   <div class="container">
     <div class="rounded rounded-t-lg overflow-hidden shadow max-w-xs my-3">
-      <img src="https://i.imgur.com/dYcYQ7E.png" class="w-full" />
+      <img src="@/assets/imgs/fondo-profile.jpg" class="w-full" />
       <div class="flex justify-center -mt-8">
         <img
           src="@/assets/imgs/user2.jpg"
@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import 'jdenticon'
+
 export default {
   name: 'userProfile2',
   props: {

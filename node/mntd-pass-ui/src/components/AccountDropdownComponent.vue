@@ -44,16 +44,23 @@
 </template>
 
 <script>
-import ROUTES from '@/constant/routes'
+import { UtilsService } from '@/services/'
+import 'jdenticon'
 
+import ROUTES from '@/constant/routes'
 export default {
   name: 'account-dropdown',
+
   data() {
     return {
-      isOpen: false
+      isOpen: false,
+      user: {}
     }
   },
+
   created() {
+    this.getUserFromLocalStorage()
+
     const handleEsc = e => {
       if (e.key === 'Esc' || e.key === 'Escape') {
         this.isOpen = false
@@ -68,6 +75,9 @@ export default {
     logout() {
       window.localStorage.clear()
       this.$router.push({ name: ROUTES.LOGIN.name })
+    },
+    getUserFromLocalStorage() {
+      this.user = UtilsService.getItemStorage('user')
     }
   }
 }

@@ -21,6 +21,7 @@
 <script>
 import AccountDropdown from '@/components/AccountDropdownComponent'
 import { bus } from '@/main.js'
+
 export default {
   name: 'top-bar',
   components: {
@@ -31,6 +32,7 @@ export default {
       showViews: false
     }
   },
+  mounted() {},
   methods: {
     toggleSidebar() {
       this.showViews = !this.showViews

@@ -12,11 +12,17 @@
             class="border border-gray-700-spotify max-w-sm mx-auto bg-gray-800-spotify shadow-lg rounded-lg overflow-hidden"
           >
             <div class="sm:flex sm:items-center items-center px-6 py-4">
-              <img
+              <!-- <img
                 class="w-20 h-20 block mx-auto sm:mx-0 sm:flex-shrink-0 h-16 sm:h-24 rounded-full"
                 src="@/assets/imgs/twitter.svg"
                 alt="computer"
-              />
+              /> -->
+              <canvas
+                class="h-full w-full object-cover"
+                width="80"
+                height="80"
+                :data-jdenticon-value="getIcon"
+              ></canvas>
               <div class="mt-4 sm:mt-0 sm:ml-4 text-center sm:text-left">
                 <p class="text-center text-xl leading-tight">
                   <i class="fa fa-user text-green-700"></i>
@@ -49,12 +55,19 @@
 </template>
 
 <script>
+import 'jdenticon'
+
 export default {
   name: 'userProfile',
   props: {
     user: {
       type: Object,
       default: () => {}
+    }
+  },
+  computed: {
+    getIcon() {
+      return this.user.username
     }
   }
 }
