@@ -29,9 +29,7 @@ const routes = [
   {
     path: ROUTES.SECRETS.path,
     name: ROUTES.SECRETS.name,
-    // route level code-splitting
-    // this generates a separate chunk (secrets.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+
     component: () => import('@/views/Secrets.vue'),
     beforeEnter: (to, from, next) => {
       if (to.name !== ROUTES.LOGIN.name && !isAuthenticated)
@@ -42,9 +40,7 @@ const routes = [
   {
     path: ROUTES.PROFILE.path,
     name: ROUTES.PROFILE.name,
-    // route level code-splitting
-    // this generates a separate chunk (secrets.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+
     component: () => import('@/views/Profile.vue'),
     beforeEnter: (to, from, next) => {
       if (to.name !== ROUTES.LOGIN.name && !isAuthenticated)
