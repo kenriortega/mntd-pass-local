@@ -7,7 +7,6 @@ import Signup from '@/views/Signup.vue'
 import notFound404 from '@/views/notFound404.vue'
 
 Vue.use(VueRouter)
-let isAuthenticated = UtilsService.getItemStorage('user')
 
 const routes = [
   {
@@ -32,6 +31,8 @@ const routes = [
 
     component: () => import('@/views/Secrets.vue'),
     beforeEnter: (to, from, next) => {
+      let isAuthenticated = UtilsService.getItemStorage('user')
+
       if (to.name !== ROUTES.LOGIN.name && !isAuthenticated)
         next({ name: ROUTES.LOGIN.name })
       else next()
@@ -43,6 +44,8 @@ const routes = [
 
     component: () => import('@/views/Profile.vue'),
     beforeEnter: (to, from, next) => {
+      let isAuthenticated = UtilsService.getItemStorage('user')
+
       if (to.name !== ROUTES.LOGIN.name && !isAuthenticated)
         next({ name: ROUTES.LOGIN.name })
       else next()
