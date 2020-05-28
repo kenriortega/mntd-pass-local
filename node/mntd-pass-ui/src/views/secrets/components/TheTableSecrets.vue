@@ -16,12 +16,12 @@
       <label class="block mt-4">
         <span class="text-gray-700">Requested Limit</span>
         <select
-          class="form-select block w-full mt-1 bg-gray-800-spotify border-none"
+          class="w-full mt-1 bg-gray-800-spotify border-transparent"
           v-model="length"
           @change="resetPagination()"
         >
-          <option value="10">10</option>
-          <option value="20">20</option>
+          <option>10</option>
+          <option>20</option>
         </select>
       </label>
     </div>
@@ -33,7 +33,7 @@
         <thead>
           <tr>
             <th
-              class="mt-8 px-4 py-2 cursor-pointer "
+              class="mt-8 px-4 py-2 cursor-pointer uppercase "
               v-for="column in columns"
               :key="column.name"
               @click="sortBy(column.name)"
