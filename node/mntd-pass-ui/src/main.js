@@ -5,6 +5,7 @@ import store from './store'
 import '@/assets/main.scss'
 import '@/assets/css/all.min.css'
 import VTooltip from 'v-tooltip'
+
 import {
   ValidationProvider,
   ValidationObserver,
