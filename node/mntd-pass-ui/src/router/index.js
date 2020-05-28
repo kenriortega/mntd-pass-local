@@ -7,6 +7,7 @@ import Signup from '@/views/Signup.vue'
 import notFound404 from '@/views/notFound404.vue'
 
 Vue.use(VueRouter)
+let isAuthenticated = UtilsService.getItemStorage('user')
 
 const routes = [
   {
@@ -31,7 +32,12 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (secrets.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import('@/views/Secrets.vue')
+    component: () => import('@/views/Secrets.vue'),
+    beforeEnter: (to, from, next) => {
+      if (to.name !== ROUTES.LOGIN.name && !isAuthenticated)
+        next({ name: ROUTES.LOGIN.name })
+      else next()
+    }
   },
   {
     path: ROUTES.PROFILE.path,
@@ -39,7 +45,12 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (secrets.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import('@/views/Profile.vue')
+    component: () => import('@/views/Profile.vue'),
+    beforeEnter: (to, from, next) => {
+      if (to.name !== ROUTES.LOGIN.name && !isAuthenticated)
+        next({ name: ROUTES.LOGIN.name })
+      else next()
+    }
   }
 ]
 
@@ -47,45 +58,6 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
-})
-
-router.beforeEach((to, from, next) => {
-  // redirect to login page if not logged in and trying to access a restricted page
-  const publicPages = [ROUTES.LOGIN.path]
-  const authRequired = !publicPages.includes(to.path)
-  let user = UtilsService.getItemStorage('user')
-  let loggedIn = false
-  if (user) {
-    loggedIn = true
-  } else {
-    loggedIn = false
-  }
-
-  if (loggedIn && to.path == ROUTES.LOGIN.path) {
-    return next(ROUTES.SECRETS.path)
-  } else if (authRequired && !loggedIn) {
-    return next(ROUTES.LOGIN.path | ROUTES.SIGNUP.path)
-  }
-
-  // TODO: Check role for acces to admin panel
-  // if (loggedIn) {
-  //   try {
-  //     const authorizedRole = to.meta.roles.includes(user.role)
-  //     console.log(authorizedRole)
-  //     if (to.path == ROUTES.LOGIN.path) {
-  //       return next(ROUTES.SECRETS.path)
-  //     }
-
-  //     if (!authorizedRole) {
-  //       console.log('Unauthorized way to access Route')
-  //       return next(ROUTES.SECRETS.path)
-  //     }
-  //   } catch (error) {
-  //     return next(ROUTES.SECRETS.path)
-  //   }
-  // }
-
-  next()
 })
 
 export default router
