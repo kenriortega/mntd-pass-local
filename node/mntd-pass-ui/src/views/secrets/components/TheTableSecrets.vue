@@ -13,17 +13,17 @@
           style="width: 250px;"
         />
       </div>
-      <div class="secrets__row-count">
+      <label class="block mt-4">
+        <span class="text-gray-700">Requested Limit</span>
         <select
-          class="secrets__row-count__select"
+          class="form-select block w-full mt-1 bg-gray-800-spotify border-none"
           v-model="length"
           @change="resetPagination()"
         >
-          <option class="secrets__row-count__label" value="10">10</option>
-          <option class="secrets__row-count__label" value="20">20</option>
-          <option class="secrets__row-count__label" value="30">30</option>
+          <option value="10">10</option>
+          <option value="20">20</option>
         </select>
-      </div>
+      </label>
     </div>
 
     <!-- end select options -->
@@ -59,9 +59,9 @@
             :key="indice"
             @click="onRowClick(row)"
           >
-            <td class="bordered px-4 py-2 text-center">{{ row.createdAt }}</td>
             <td class="bordered px-4 py-2 text-center">{{ row.name }}</td>
             <td class="bordered px-4 py-2 text-center">{{ row.category }}</td>
+            <td class="bordered px-4 py-2 text-center">{{ row.createdAt }}</td>
             <td class="bordered px-4 py-2 text-center">
               <button
                 v-tooltip.right-end="
@@ -163,9 +163,9 @@ export default {
   data() {
     let sortOrders = {}
     let columns = [
-      { label: 'Created At', name: 'createdAt' },
       { label: 'Name', name: 'name' },
       { label: 'Category', name: 'category' },
+      { label: 'Created At', name: 'createdAt' },
       { label: 'Action', name: 'action' }
     ]
     columns.forEach(column => {
