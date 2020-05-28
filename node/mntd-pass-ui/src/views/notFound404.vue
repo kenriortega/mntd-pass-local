@@ -5,7 +5,7 @@
         <h1 class="text-xl text-green-500">Page Not Found</h1>
         <button
           class="items-center text-green-500 hover:text-white hover:bg-green-500 border border-green-500 text-xs font-semibold rounded-full px-4 py-1 leading-normal"
-          to="/"
+          @click="goBack()"
         >
           Back to Home
         </button>
@@ -31,7 +31,12 @@
 
 <script>
 export default {
-  name: 'notFound404'
+  name: 'notFound404',
+  methods: {
+    goBack() {
+      this.$router.push({ name: 'secrets' })
+    }
+  }
 }
 </script>
 
