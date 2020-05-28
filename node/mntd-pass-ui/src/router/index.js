@@ -64,7 +64,7 @@ router.beforeEach((to, from, next) => {
   if (loggedIn && to.path == ROUTES.LOGIN.path) {
     return next(ROUTES.SECRETS.path)
   } else if (authRequired && !loggedIn) {
-    return next(ROUTES.LOGIN.path)
+    return next(ROUTES.LOGIN.path | ROUTES.SIGNUP.path)
   }
 
   // TODO: Check role for acces to admin panel
