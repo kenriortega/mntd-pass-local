@@ -65,7 +65,7 @@
                   :contenteditable="isEditing === indice"
                   :ref="`span-${indice}`"
                   @dblclick="editingSecret(indice)"
-                  @blur="finishToEdditSecret(indice)"
+                  @blur="onFinishToEdditSecret(indice, row.name)"
                   :class="`text-${isCoping === indice ? 'green' : 'gray'}-700`"
                 >
                   {{ changed === indice ? value : '' }}
@@ -79,7 +79,7 @@
                 v-if="changed === indice"
                 @click="
                   isEditing === indice
-                    ? finishToEdditSecret(indice)
+                    ? onFinishToEdditSecret(indice, row.name)
                     : editingSecret(indice)
                 "
                 :class="
@@ -311,11 +311,12 @@ export default {
       // span.setAttribute('contenteditable', 'true')
       span.focus()
     },
-    finishToEdditSecret(key) {
+    onFinishToEdditSecret(key, name) {
       this.editing = null
       const span = this.$refs[`span-${key}`][0]
       this.value = span.innerHTML.trim()
-      console.log(this.value)
+      // TODO: make request
+      this.$emit('edit-secret-name', { value: this.value, name })
     }
   }
 }
