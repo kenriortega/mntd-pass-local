@@ -85,7 +85,7 @@ export default {
       payload: {},
       user: {},
       errorMSG: {},
-      question: "Don't have an account? Create an account"  
+      question: `Don't have an account? Create an account`
     }
   },
   methods: {
