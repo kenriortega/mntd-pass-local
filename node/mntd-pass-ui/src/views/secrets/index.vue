@@ -43,6 +43,7 @@
               :user="user"
               @showError="showError($event)"
               @delete-secret-name="onDeleteSecret"
+              @edit-secret-name="onUpdateSecret"
             />
             <!-- end TableView Secrets -->
           </div>
@@ -157,6 +158,26 @@ export default {
             await this.getSecretsByUsername()
           } else {
             console.log(`${name} was not deleted`)
+          }
+        }
+      } catch (err) {
+        this.errorMSG = err.response.data
+      }
+    },
+    async onUpdateSecret({ value, name }) {
+      let { username, token } = this.user
+      try {
+        let res = await SecretService.updateSecretByName(
+          username,
+          name,
+          value,
+          token
+        )
+        if (res.status === 200) {
+          if (res.data.result[0] === 0) {
+            console.log('Unsuccessfully')
+          } else {
+            console.log('Successfully')
           }
         }
       } catch (err) {
