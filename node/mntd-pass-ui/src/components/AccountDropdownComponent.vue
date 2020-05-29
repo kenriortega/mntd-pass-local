@@ -6,7 +6,7 @@
     >
       <img
         class="h-full w-full object-cover"
-        src="../assets/imgs/user2.jpg"
+        src="@/assets/imgs/user2.jpg"
         alt=""
       />
     </button>
@@ -45,7 +45,6 @@
 
 <script>
 import { UtilsService } from '@/services/'
-import 'jdenticon'
 
 import ROUTES from '@/constant/routes'
 export default {
@@ -57,10 +56,10 @@ export default {
       user: {}
     }
   },
-
-  created() {
+  mounted() {
     this.getUserFromLocalStorage()
-
+  },
+  created() {
     const handleEsc = e => {
       if (e.key === 'Esc' || e.key === 'Escape') {
         this.isOpen = false
@@ -76,6 +75,7 @@ export default {
       window.localStorage.clear()
       this.$router.push({ name: ROUTES.LOGIN.name })
     },
+
     getUserFromLocalStorage() {
       this.user = UtilsService.getItemStorage('user')
     }
