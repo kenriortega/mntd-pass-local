@@ -73,27 +73,27 @@ module.exports = async function (fastify, options) {
       return secretServices.createSecret(username, name, value, category)
     }
   )
-  fastify.addSchema({
-    $id: 'deleteSecret',
-    type: 'object',
-    properties: {
-      username: { type: 'string' },
-      name: { type: 'string' }
-    },
-    required: ['username', 'name']
-  })
+  // fastify.addSchema({
+  //   $id: 'deleteSecret',
+  //   type: 'object',
+  //   properties: {
+  //     username: { type: 'string' },
+  //     name: { type: 'string' }
+  //   },
+  //   required: ['username', 'name']
+  // })
   fastify.delete(
     '/secrets/:username/:name',
     {
-      preValidation: fastify.auth([fastify.validateJWT]),
-      schema: {
-        body: 'deleteSecret#'
-      }
+      preValidation: fastify.auth([fastify.validateJWT])
+      // schema: {
+      //   body: 'deleteSecret#'
+      // }
     },
     async (req, reply) => {
       const { username, name } = req.params
-      await secretServices.deleteSecret(username, name)
-      reply.send({ status: 'deleted' })
+      let result = await secretServices.deleteSecret(username, name)
+      reply.send({ result })
     }
   )
   fastify.addSchema({
