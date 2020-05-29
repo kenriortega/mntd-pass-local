@@ -45,7 +45,7 @@ USAGE
 
 ## `mntd-pass help [COMMAND]`
 
-display help for mntd-pass
+displays help for mntd-pass
 
 ```
 USAGE
@@ -62,7 +62,7 @@ _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v2.2.3
 
 ## `mntd-pass secrets`
 
-Comando para la gestion de secrets
+Secrets management command
 
 ```
 USAGE
@@ -73,7 +73,7 @@ _See code: [src/commands/secrets/index.js](https://github.com/node_js/mntd-pass/
 
 ## `mntd-pass secrets:create USERNAME NAME`
 
-Create an secrets for a username
+Create a secret for a username
 
 ```
 USAGE
@@ -84,7 +84,7 @@ _See code: [src/commands/secrets/create.js](https://github.com/node_js/mntd-pass
 
 ## `mntd-pass secrets:delete USERNAME NAME`
 
-Permite eliminar un secret dado el usuario y el nombre del mismo
+Allows to delete the secret value of a user given user and username
 
 ```
 USAGE
@@ -95,7 +95,7 @@ _See code: [src/commands/secrets/delete.js](https://github.com/node_js/mntd-pass
 
 ## `mntd-pass secrets:get USERNAME NAME`
 
-Permite obtener el valor de un secret dado el usuario y el nombre del mismo
+Allows to get the secret value of a user given user and username
 
 ```
 USAGE
@@ -109,7 +109,7 @@ _See code: [src/commands/secrets/get.js](https://github.com/node_js/mntd-pass/bl
 
 ## `mntd-pass secrets:list USERNAME`
 
-Permite listar los secrets asociados a un usuario
+Allows to lists all the secretes asociated to a user
 
 ```
 USAGE
@@ -120,7 +120,7 @@ _See code: [src/commands/secrets/list.js](https://github.com/node_js/mntd-pass/b
 
 ## `mntd-pass secrets:update USERNAME NAME`
 
-Permite actualizar el secret
+Allows to update the secret
 
 ```
 USAGE
@@ -131,7 +131,7 @@ _See code: [src/commands/secrets/update.js](https://github.com/node_js/mntd-pass
 
 ## `mntd-pass users`
 
-Comando para la gestion de usuarios
+User management command
 
 ```
 USAGE
@@ -142,7 +142,7 @@ _See code: [src/commands/users/index.js](https://github.com/node_js/mntd-pass/bl
 
 ## `mntd-pass users:create USERNAME`
 
-Permite crear un usuario
+Allows creating a user
 
 ```
 USAGE
@@ -153,7 +153,7 @@ _See code: [src/commands/users/create.js](https://github.com/node_js/mntd-pass/b
 
 ## `mntd-pass users:list`
 
-Permite listar todos los usuarios
+Allows to lists users
 
 ```
 USAGE
