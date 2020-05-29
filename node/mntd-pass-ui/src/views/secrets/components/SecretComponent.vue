@@ -92,7 +92,7 @@ export default {
     copyToClipBoard(indice) {
       this.isCoping = indice
       let copyToClibBoard = document.querySelector(`#clipboard-${indice}`)
-      copyToClibBoard.setAttribute('type', 'text') // 不是 hidden 才能複製
+      copyToClibBoard.setAttribute('type', 'text')
       copyToClibBoard.select()
       try {
         let successful = document.execCommand('copy')
