@@ -20,6 +20,15 @@ class SecretService {
 
     return res
   }
+  async deleteSecretByName(username, name, token) {
+    let res = await axios.delete(
+      `${API_ROUTES.GET_SECRET}/${username}/${name}`,
+      {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    )
+    return res
+  }
 }
 
 export default new SecretService()
