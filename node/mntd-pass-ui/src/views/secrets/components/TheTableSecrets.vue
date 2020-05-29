@@ -58,10 +58,36 @@
             v-for="(row, indice) in paginatedSecrets"
             :key="indice"
           >
-            <td class="bordered px-4 py-2 text-center">{{ row.name }}</td>
+            <td class="bordered px-4 py-2 text-center">
+              <div class="flex flex-col">
+                <span> {{ row.name }} </span>
+                <span
+                  :contenteditable="isEditing === indice"
+                  :ref="`span-${indice}`"
+                  @dblclick="editingSecret(indice)"
+                  @blur="finishToEdditSecret(indice)"
+                  :class="`text-${isCoping === indice ? 'green' : 'gray'}-700`"
+                >
+                  {{ changed === indice ? value : '' }}
+                </span>
+              </div>
+            </td>
             <td class="bordered px-4 py-2 text-center">{{ row.category }}</td>
             <td class="bordered px-4 py-2 text-center">{{ row.createdAt }}</td>
             <td class="bordered px-4 py-2 text-center">
+              <i
+                v-if="changed === indice"
+                @click="
+                  isEditing === indice
+                    ? finishToEdditSecret(indice)
+                    : editingSecret(indice)
+                "
+                :class="
+                  `text-red-400 ml-2 my-2 mr-2 fa ${
+                    isEditing === indice ? 'fa-check-double' : 'fa-edit'
+                  }`
+                "
+              ></i>
               <i
                 class="text-red-400 ml-2 my-2 mr-2 fa fa-trash-alt"
                 @click="onDeleteItem(row.name)"
@@ -86,13 +112,7 @@
                 ></i>
                 {{ changed !== indice ? 'Get Secret' : 'Copy Secret' }}
               </button>
-              <span>
-                <p
-                  :class="`text-${isCoping === indice ? 'green' : 'gray'}-700`"
-                >
-                  {{ changed === indice ? value : '' }}
-                </p></span
-              >
+
               <input type="hidden" :id="`clipboard-${indice}`" :value="value" />
             </td>
           </tr>
@@ -193,8 +213,9 @@ export default {
       },
       isCoping: null,
       changed: null,
-      value: ''
-      // msg: null,
+      value: '',
+      editing: null,
+      msg: null
     }
   },
   computed: {
@@ -204,6 +225,9 @@ export default {
         this.length,
         this.pagination.currentPage
       )
+    },
+    isEditing() {
+      return this.editing
     },
     filteredSecrets() {
       let secrets = this.rowsSecrets
@@ -245,9 +269,8 @@ export default {
     getIndex(array, key, value) {
       return array.findIndex(i => i[key] == value)
     },
-    // onRowClick({ createdAt, name, category }) {
-    //   console.log('Clicked! +', createdAt, name, category)
-    // },
+
+    // get value and copy to clibBoard
     async getValueFromSecret(name, indice) {
       this.changed = indice
       let { username, token } = this.user
@@ -262,6 +285,8 @@ export default {
     copyToClipBoard(indice) {
       this.isCoping = indice
       let copyToClibBoard = document.querySelector(`#clipboard-${indice}`)
+      copyToClibBoard.setAttribute('type', 'text')
+
       copyToClibBoard.select()
       try {
         let successful = document.execCommand('copy')
@@ -276,8 +301,21 @@ export default {
       copyToClibBoard.setAttribute('type', 'hidden')
       window.getSelection().removeAllRanges()
     },
+    // table logic
     onDeleteItem(name) {
       this.$emit('delete-secret-name', name)
+    },
+    editingSecret(key) {
+      this.editing = key
+      const span = this.$refs[`span-${key}`][0]
+      // span.setAttribute('contenteditable', 'true')
+      span.focus()
+    },
+    finishToEdditSecret(key) {
+      this.editing = null
+      const span = this.$refs[`span-${key}`][0]
+      this.value = span.innerHTML.trim()
+      console.log(this.value)
     }
   }
 }
