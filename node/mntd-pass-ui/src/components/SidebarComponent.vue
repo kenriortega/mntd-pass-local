@@ -6,7 +6,7 @@
       } sidebar bg-gray-900-spotify w-48 flex-none  flex flex-col justify-between font-semibold`
     "
   >
-    <!-- parte 1 Links Generales -->
+    <!-- Section 1 General Links -->
     <ul class="py-6">
       <li
         v-for="sel in sidebarIndexElems"
@@ -28,7 +28,7 @@
         </router-link>
       </li>
     </ul>
-    <!-- Parte 2 Categorias -->
+    <!-- Part 2 Categories -->
     <div class="sidebar-spotify overflow-y-auto px-5 mt-2">
       <div v-for="e in sidebarOtherElms" :key="e.id">
         <h3
@@ -52,7 +52,7 @@
         </ul>
       </div>
     </div>
-    <!-- Parte 3 Logut -->
+    <!-- Part 3 Logout -->
     <div
       class="border-t border-gray-800 h-16 px-4 py-2 flex items-center group"
     >
