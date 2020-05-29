@@ -143,8 +143,8 @@ module.exports = async function (fastify, options) {
     async (req, reply) => {
       const { username, name } = req.params
       const { value } = req.body
-      await secretServices.updateSecret(username, name, value)
-      reply.send({ status: 'updated' })
+      let result = await secretServices.updateSecret(username, name, value)
+      reply.send({ result })
     }
   )
 }
