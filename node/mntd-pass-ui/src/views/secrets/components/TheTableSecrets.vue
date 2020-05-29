@@ -57,12 +57,15 @@
             class="clickable"
             v-for="(row, indice) in paginatedSecrets"
             :key="indice"
-            @click="onRowClick(row)"
           >
             <td class="bordered px-4 py-2 text-center">{{ row.name }}</td>
             <td class="bordered px-4 py-2 text-center">{{ row.category }}</td>
             <td class="bordered px-4 py-2 text-center">{{ row.createdAt }}</td>
             <td class="bordered px-4 py-2 text-center">
+              <i
+                class="text-red-400 ml-2 my-2 mr-2 fa fa-trash-alt"
+                @click="onDeleteItem(row.name)"
+              ></i>
               <button
                 v-tooltip.right-end="
                   changed !== indice ? 'Get Secret' : 'Copy Secret'
@@ -242,9 +245,9 @@ export default {
     getIndex(array, key, value) {
       return array.findIndex(i => i[key] == value)
     },
-    onRowClick({ createdAt, name, category }) {
-      console.log('Clicked! +', createdAt, name, category)
-    },
+    // onRowClick({ createdAt, name, category }) {
+    //   console.log('Clicked! +', createdAt, name, category)
+    // },
     async getValueFromSecret(name, indice) {
       this.changed = indice
       let { username, token } = this.user
@@ -272,6 +275,9 @@ export default {
 
       copyToClibBoard.setAttribute('type', 'hidden')
       window.getSelection().removeAllRanges()
+    },
+    onDeleteItem(name) {
+      this.$emit('delete-secret-name', name)
     }
   }
 }

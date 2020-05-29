@@ -42,6 +42,7 @@
               :rowsSecrets="listSecrets"
               :user="user"
               @showError="showError($event)"
+              @delete-secret-name="onDeleteSecret"
             />
             <!-- end TableView Secrets -->
           </div>
@@ -111,6 +112,14 @@ export default {
       this.getSecretsByUsername()
     }
   },
+  watch: {
+    data: function() {
+      UtilsService.saveLocalStorage(
+        `secrets_by_${this.user.username}`,
+        this.data
+      )
+    }
+  },
   methods: {
     getUserFromLocalStorage() {
       this.user = UtilsService.getItemStorage('user')
@@ -134,7 +143,25 @@ export default {
     },
     changeView() {
       this.showViews = !this.showViews
-      this.data.data = UtilsService.getItemStorage('secrets')
+      this.data.data = UtilsService.getItemStorage(
+        `secrets_by_${this.user.username}`
+      )
+    },
+    async onDeleteSecret(name) {
+      let { username, token } = this.user
+      try {
+        let res = await SecretService.deleteSecretByName(username, name, token)
+        if (res.status === 200) {
+          if (res.data.result === 1) {
+            console.log(`${name} was deleted`)
+            await this.getSecretsByUsername()
+          } else {
+            console.log(`${name} was not deleted`)
+          }
+        }
+      } catch (err) {
+        this.errorMSG = err.response.data
+      }
     }
   }
 }
