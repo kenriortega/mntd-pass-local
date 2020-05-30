@@ -20,8 +20,8 @@
           v-model="length"
           @change="resetPagination()"
         >
+          <option>5</option>
           <option>10</option>
-          <option>20</option>
         </select>
       </label>
     </div>
@@ -121,58 +121,25 @@
     </div>
     <!-- end table -->
     <!-- pagination Component -->
-    <div class="pagination">
-      <div class="pagination__show" v-if="!tableShow.showdata">
-        <span class="">
-          {{ pagination.from }} - {{ pagination.to }} of
-          {{ pagination.total }}
-        </span>
-        <a
-          v-if="pagination.prevPageUrl"
-          class="btn__pagination-previous"
-          @click="--pagination.currentPage"
-          >Prev</a
-        >
-        <a class="btn__pagination-previouds" v-else disabled>Prev</a>
-        <a
-          v-if="pagination.nextPageUrl"
-          class="btn__pagination-next"
-          @click="++pagination.currentPage"
-          >Next</a
-        >
-        <a class="btn__pagination-nextd" v-else disabled>Next</a>
-      </div>
-      <div class="pagination__show" v-else>
-        <span class="">
-          {{ pagination.from }} - {{ pagination.to }} of
-          {{ filteredSecrets.length }}
-          <span v-if="`filteredSecrets.length < pagination.total`"></span>
-        </span>
-        <a
-          v-if="pagination.prevPage"
-          class="btn__pagination-previous"
-          @click="--pagination.currentPage"
-          >Prev</a
-        >
-        <a class="btn__pagination-previousd" v-else disabled>Prev</a>
-        <a
-          v-if="pagination.nextPage"
-          class="btn__pagination-next"
-          @click="++pagination.currentPage"
-          >Next</a
-        >
-        <a class="btn__pagination-nextd" v-else disabled>Next</a>
-      </div>
-    </div>
+    <Pagination
+      v-if="filteredSecrets.length > length"
+      :filteredSecrets="filteredSecrets"
+      :pagination="pagination"
+      :tableShow="tableShow"
+    />
     <!-- end pagination -->
   </div>
 </template>
 
 <script>
 import { SecretService } from '@/services/'
+import Pagination from '@/components/PaginationComponent'
 
 export default {
   name: 'TheTableSecrets',
+  components: {
+    Pagination
+  },
   props: {
     rowsSecrets: {
       type: Array,
@@ -315,7 +282,6 @@ export default {
       this.editing = null
       const span = this.$refs[`span-${key}`][0]
       this.value = span.innerHTML.trim()
-      // TODO: make request
       this.$emit('edit-secret-name', { value: this.value, name })
     }
   }
