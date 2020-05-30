@@ -1,7 +1,7 @@
 <template>
   <!-- component -->
   <div class="container">
-    <div class="rounded rounded-t-lg overflow-hidden shadow max-w-xs my-3">
+    <div class="rounded rounded-t-lg overflow-hidden shadow max-w-xs my-8">
       <img src="@/assets/imgs/fondo-profile.jpg" class="w-full" />
       <div class="flex justify-center -mt-8">
         <img
@@ -13,18 +13,26 @@
         <h3 class="text-gray-500 text-sm bold font-sans">
           {{ user.username }}
         </h3>
-        <p class="mt-2 font-sans font-light text-grey-dark">
-          Created at {{ user.createdAt }}
+        <p class="mt-2 font-sans font-light text-gray-700">
+          Craated at {{ user.createdAt }}
         </p>
       </div>
-      <div class="flex justify-center pb-3 text-grey-dark">
+      <div class="flex items-baseline pb-3 text-gray-700">
         <div class="text-center mr-3 border-r pr-3">
-          <h2>worker</h2>
-          <span>role</span>
+          <h2
+            class=" inline-block bg-gray-750 text-gray-700-spotify text-xs px-2 rounded-full uppercase font-semibold tracking-wide ml-2 mr-2"
+          >
+            {{ user.role }}
+          </h2>
+          <span class="uppercase text-gray-700">role</span>
         </div>
         <div class="text-center">
-          <h2>42</h2>
-          <span>secrets</span>
+          <h2
+            class=" inline-block bg-gray-750 text-gray-700-spotify text-xs px-2 rounded-full uppercase font-semibold tracking-wide ml-2 mr-2"
+          >
+            {{ secrets.count }}
+          </h2>
+          <span class="uppercase text-gray-700">secrets</span>
         </div>
       </div>
     </div>
@@ -35,11 +43,15 @@
 import 'jdenticon'
 
 export default {
-  name: 'userProfile2',
+  name: 'userProfile',
   props: {
     user: {
       type: Object,
       default: () => {}
+    },
+    secrets: {
+      type: Array,
+      default: () => []
     }
   }
 }
