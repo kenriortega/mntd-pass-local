@@ -20,11 +20,11 @@
       v-if="isOpen"
       class="absolute right-0 mt-1 py-2 w-48 bg-gray-900-spotify rounded-lg shadow-xl"
     >
-      <a
-        href="#"
+      <router-link
+        :to="{ name: 'profile' }"
         class="block px-4 py-2 text-gray-700-spotify rounded hover:bg-green-900 hover:text-white"
       >
-        <i class="mr-2 fa fa-user"></i>Profile</a
+        <i class="mr-2 fa fa-user"></i>Profile</router-link
       >
       <a
         href="#"
