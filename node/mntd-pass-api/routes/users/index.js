@@ -88,7 +88,7 @@ module.exports = async function (fastify, options) {
       const { oldPassword, newPassword } = request.body
       await userServices.changePassword(username, oldPassword, newPassword)
       reply.code(202)
-      return { status: 'in process' }
+      return { result: 'in process' }
     }
   )
 }
