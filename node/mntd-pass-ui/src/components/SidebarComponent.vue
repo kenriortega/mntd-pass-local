@@ -3,7 +3,7 @@
     :class="
       `${
         isToggle ? 'hidden' : ''
-      } sidebar bg-gray-900-spotify w-32 flex-none  flex flex-col justify-between font-semibold`
+      } sidebar bg-gray-900-spotify w-48 flex-none  flex flex-col justify-between font-semibold`
     "
   >
     <!-- Section 1 General Links -->
