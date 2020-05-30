@@ -12,9 +12,42 @@
             >
             this is your profile...
           </h3>
-          <!-- here profile component -->
-          <CardProfile2 :user="user" />
-          <!-- end -->
+          <div
+            class="flex flex-wrap w-full mb-20 flex-col  items-center text-center"
+          >
+            <div class="flex flex-wrap -m-4 justify-between">
+              <div class="xl:w-2/5 md:w-1/2 p-4">
+                <!-- here profile component -->
+                <CardProfile2
+                  class="flex flex-1"
+                  :user="user"
+                  :secrets="secrets"
+                />
+                <!-- end -->
+              </div>
+
+              <div class="xl:w-2/5 md:w-1/2 p-4">
+                <!-- sections -->
+                <div class="border border-gray-700-spotify p-6 rounded-lg my-8">
+                  <div
+                    class="w-32 h-32 inline-flex items-center justify-center rounded-full bg-gray-800-spotify mb-4"
+                  >
+                    <img class="h-32 w-32" src="@/assets/imgs/creditcard.svg" />
+                  </div>
+                  <h2
+                    class="text-lg text-white font-medium title-font mb-2 text-gray-700 hover:text-gray-300"
+                  >
+                    Update password
+                  </h2>
+                  <p class="leading-relaxed text-base text-gray-700">
+                    Change password. This feat will be to change your password
+                    and encrypt all secrets for better security
+                  </p>
+                </div>
+                <!-- end sections -->
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -36,14 +69,21 @@ export default {
   },
   data: () => ({
     errorMSG: {},
-    user: {}
+    user: {},
+    secrets: []
   }),
   mounted() {
     this.getUserFromLocalStorage()
+    this.getSecretsFromLocalStorage()
   },
   methods: {
     getUserFromLocalStorage() {
       this.user = UtilsService.getItemStorage('user')
+    },
+    getSecretsFromLocalStorage() {
+      this.secrets = UtilsService.getItemStorage(
+        `secrets_by_${this.user.username}`
+      )
     }
   }
 }
