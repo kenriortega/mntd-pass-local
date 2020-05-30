@@ -26,6 +26,28 @@
                 />
                 <!-- end -->
               </div>
+
+              <div class="xl:w-1/4 md:w-1/2 p-4">
+                <!-- sections -->
+                <div class="border border-gray-700-spotify p-6 rounded-lg my-8">
+                  <div
+                    class="w-32 h-32 inline-flex items-center justify-center rounded-full bg-gray-800-spotify mb-4"
+                  >
+                    <img class="h-32 w-32" src="@/assets/imgs/creditcard.svg" />
+                  </div>
+                  <h2
+                    class="text-lg text-white font-medium title-font mb-2 text-gray-700 hover:text-gray-300"
+                  >
+                    Update password
+                  </h2>
+                  <p class="leading-relaxed text-base text-gray-700">
+                    Change password. This feat will be to change your password
+                    and encrypt all secrets for better security
+                  </p>
+                </div>
+                <!-- end sections -->
+              </div>
+
               <div v-if="showPanel" class="xl:w-1/4 md:w-1/2 p-4">
                 <!-- sections -->
                 <div class="border border-gray-700-spotify p-6 rounded-lg my-8">
@@ -50,7 +72,7 @@
                       >
                         <i class="mr-2 fa fa-lock text-gray-500"></i>
                         <ValidationProvider
-                          name="Username"
+                          name="Old password"
                           rules="required"
                           v-slot="{ errors }"
                         >
@@ -69,7 +91,7 @@
                       >
                         <i class="mr-2 fa fa-lock text-gray-500"></i>
                         <ValidationProvider
-                          name="password"
+                          name="New password"
                           rules="required"
                           v-slot="{ errors }"
                         >
@@ -98,26 +120,6 @@
                       </div>
                     </form>
                   </ValidationObserver>
-                </div>
-                <!-- end sections -->
-              </div>
-              <div class="xl:w-1/4 md:w-1/2 p-4">
-                <!-- sections -->
-                <div class="border border-gray-700-spotify p-6 rounded-lg my-8">
-                  <div
-                    class="w-32 h-32 inline-flex items-center justify-center rounded-full bg-gray-800-spotify mb-4"
-                  >
-                    <img class="h-32 w-32" src="@/assets/imgs/creditcard.svg" />
-                  </div>
-                  <h2
-                    class="text-lg text-white font-medium title-font mb-2 text-gray-700 hover:text-gray-300"
-                  >
-                    Update password
-                  </h2>
-                  <p class="leading-relaxed text-base text-gray-700">
-                    Change password. This feat will be to change your password
-                    and encrypt all secrets for better security
-                  </p>
                 </div>
                 <!-- end sections -->
               </div>
