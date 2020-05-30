@@ -205,6 +205,8 @@ export default {
     },
     async onCreateSecret({ category, name, value }) {
       let { username, token } = this.user
+      name = name.replace(' ', '_')
+      category = category.toLowerCase()
       try {
         let res = await SecretService.createSecret(
           username,
@@ -215,7 +217,6 @@ export default {
         )
         if (res.status === 201) {
           await this.getSecretsByUsername()
-          this.showPanelCreateSecret = false
         }
       } catch (err) {
         this.errorMSG = err.response.data
