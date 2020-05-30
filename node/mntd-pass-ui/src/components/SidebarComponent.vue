@@ -58,7 +58,7 @@
     >
       <i class="fa fa-tools"></i>
       <span class="ml-2 hover:text-white"
-        ><strong> {{ whoami.role }}</strong></span
+        ><strong> <span class="uppercase text-green-700"> {{ whoami.role }}</span></strong></span
       >
     </div>
   </div>
