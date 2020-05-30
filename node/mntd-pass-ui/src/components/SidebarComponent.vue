@@ -3,7 +3,7 @@
     :class="
       `${
         isToggle ? 'hidden' : ''
-      } sidebar bg-gray-900-spotify w-48 flex-none  flex flex-col justify-between font-semibold`
+      } sidebar bg-gray-900-spotify w-32 flex-none  flex flex-col justify-between font-semibold`
     "
   >
     <!-- Section 1 General Links -->
@@ -29,10 +29,10 @@
       </li>
     </ul>
     <!-- Part 2 Categories -->
-    <div class="sidebar-spotify overflow-y-auto px-5 mt-2">
+    <div class="sidebar-spotify overflow-y-auto px-5">
       <div v-for="e in sidebarOtherElms" :key="e.id">
         <h3
-          class="uppercase tracking-widest text-gray-500 font-normal text-xs mt-6"
+          class="uppercase tracking-widest text-gray-500 font-normal text-xs "
         >
           {{ e.name }}
         </h3>
@@ -60,8 +60,6 @@
       <span class="ml-2 hover:text-white"
         ><strong> {{ whoami.role }}</strong></span
       >
-      <!-- <i class="fa fa-sign-out-alt"></i>
-      <a href="" class="ml-2 hover:text-white" @click="logout()">Log out</a> -->
     </div>
   </div>
 </template>
@@ -121,19 +119,19 @@ export default {
               filter: 'personal'
             }
           ]
-        },
-        {
-          id: Math.random().toString(),
-          name: 'management',
-          subitems: [
-            {
-              id: Math.random().toString(),
-              name: 'Secrets',
-              icon: 'plus',
-              filter: 'secret-create'
-            }
-          ]
         }
+        // {
+        //   id: Math.random().toString(),
+        //   name: 'management',
+        //   subitems: [
+        //     {
+        //       id: Math.random().toString(),
+        //       name: 'Secrets',
+        //       icon: 'plus',
+        //       filter: 'secret-create'
+        //     }
+        //   ]
+        // }
       ]
     }
   },
