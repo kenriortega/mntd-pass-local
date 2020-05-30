@@ -117,6 +117,12 @@ export default {
               name: 'Personal',
               icon: 'users',
               filter: 'personal'
+            },
+            {
+              id: Math.random().toString(),
+              name: 'Payments',
+              icon: 'address-card',
+              filter: 'payments'
             }
           ]
         }
