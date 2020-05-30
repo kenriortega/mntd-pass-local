@@ -38,7 +38,7 @@ async function authentication(fastify, options) {
       secret: process.env.SECRET_TOKEN || 'secretdev',
       messages,
       sign: {
-        expiresIn: 300
+        expiresIn: 3000
       }
     })
     .register(require('fastify-auth'))
