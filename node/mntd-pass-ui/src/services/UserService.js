@@ -10,6 +10,19 @@ class UserService {
     })
     return res
   }
+  async changePassword(oldPassword, newPassword, token) {
+    let res = await axios.put(
+      API_ROUTES.UPDATE_USER,
+      {
+        oldPassword,
+        newPassword
+      },
+      {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    )
+    return res
+  }
 }
 
 export default new UserService()
