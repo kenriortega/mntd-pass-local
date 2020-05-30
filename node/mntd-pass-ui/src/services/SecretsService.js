@@ -42,6 +42,21 @@ class SecretService {
     )
     return res
   }
+  async createSecret(username, name, value, category, token) {
+    let res = await axios.post(
+      API_ROUTES.GET_SECRET,
+      {
+        username,
+        name: name.replace(' ', '_'),
+        value,
+        category
+      },
+      {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+    )
+    return res
+  }
 }
 
 export default new SecretService()
