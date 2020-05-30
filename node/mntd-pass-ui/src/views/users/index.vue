@@ -132,7 +132,7 @@
 </template>
 
 <script>
-import { UtilsService } from '@/services/'
+import { UtilsService, UserService } from '@/services/'
 
 import AlertComponent from '@/components/AlertComponent'
 import TopBar from '@/components/TopBarComponent'
@@ -165,7 +165,18 @@ export default {
       )
     },
     async changePassword() {
-      console.log(this.payload)
+      try {
+        let res = await UserService.changePassword(
+          this.payload.oldPassword,
+          this.payload.newPassword,
+          this.user.token
+        )
+        if (res.statsu === 202) {
+          console.log(res.data.result)
+        }
+      } catch (err) {
+        this.errorMSG = err.response.data
+      }
     },
     onShowOptions(data) {
       this.showPanel = data
