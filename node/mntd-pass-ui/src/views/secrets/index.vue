@@ -22,7 +22,23 @@
               "
               @click="showViews = !showViews"
             ></i>
+            <i
+              class="
+                ml-4 mr-2 cursor-pointer fa fa-plus
+              "
+              @click="showPanelCreateSecret = !showPanelCreateSecret"
+            ></i>
           </h3>
+
+          <!-- Add secret -->
+          <div class="flex flex-1 items-center mt-4 -mx-2">
+            <AddSecret
+              v-if="showPanelCreateSecret"
+              @cretate-secret="onCreateSecret"
+            />
+          </div>
+          <!-- end Add secret -->
+
           <div class="flex flex-1 items-center mt-4 -mx-2" v-if="isHaveSecrets">
             <!-- CardView Secrets -->
             <ul v-if="showViews" class="flex flex-wrap justify-center">
@@ -59,6 +75,7 @@ import AlertComponent from '@/components/AlertComponent'
 import TopBar from '@/components/TopBarComponent'
 import Secret from './components/SecretComponent'
 import TheTableSecrets from './components/TheTableSecrets'
+import AddSecret from './components/AddSecretComponent'
 import { bus } from '@/main.js'
 
 export default {
@@ -67,7 +84,8 @@ export default {
     TopBar,
     AlertComponent,
     Secret,
-    TheTableSecrets
+    TheTableSecrets,
+    AddSecret
   },
   data() {
     return {
@@ -78,7 +96,8 @@ export default {
       },
       filter: '',
       errorMSG: {},
-      showViews: true
+      showViews: true,
+      showPanelCreateSecret: false
     }
   },
   computed: {
@@ -179,6 +198,24 @@ export default {
           } else {
             console.log('Successfully')
           }
+        }
+      } catch (err) {
+        this.errorMSG = err.response.data
+      }
+    },
+    async onCreateSecret({ category, name, value }) {
+      let { username, token } = this.user
+      try {
+        let res = await SecretService.createSecret(
+          username,
+          name,
+          value,
+          category,
+          token
+        )
+        if (res.status === 201) {
+          await this.getSecretsByUsername()
+          this.showPanelCreateSecret = false
         }
       } catch (err) {
         this.errorMSG = err.response.data
