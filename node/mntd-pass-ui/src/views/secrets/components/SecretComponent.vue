@@ -6,11 +6,16 @@
         class="border border-gray-700-spotify max-w-sm mx-auto bg-gray-800-spotify shadow-lg rounded-lg overflow-hidden"
       >
         <div class="sm:flex sm:items-center px-6 py-4">
-          <img
-            class="w-20 h-20 block mx-auto sm:mx-0 sm:flex-shrink-0 h-16 sm:h-24 rounded-full"
-            src="@/assets/imgs/profile.svg"
-            alt="computer"
-          />
+          <div
+            class="w-20 h-20 inline-flex items-center justify-center rounded-full bg-gray-800-spotify"
+          >
+            <img
+              class="w-20 h-20 "
+              src="@/assets/imgs/profile.svg"
+              alt="computer"
+            />
+          </div>
+
           <div class="mt-4 sm:mt-0 sm:ml-4 text-center sm:text-left">
             <p class="text-xl leading-tight">
               <i class="fa fa-lock text-green-700"></i>
