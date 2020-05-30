@@ -47,7 +47,7 @@ class SecretService {
       API_ROUTES.GET_SECRET,
       {
         username,
-        name: name.replace(' ', '_'),
+        name,
         value,
         category
       },
