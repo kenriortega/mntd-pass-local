@@ -14,7 +14,7 @@
           <i class="mr-2 fa fa-user text-gray-500"></i>
           <ValidationProvider
             name="Username"
-            rules="required|alpha"
+            rules="required"
             v-slot="{ errors }"
           >
             <span class="text-red-400">{{ errors[0] }}</span>
@@ -33,7 +33,7 @@
           <i class="mr-2 fa fa-lock text-gray-500"></i>
           <ValidationProvider
             name="password"
-            rules="required|alpha"
+            rules="required"
             v-slot="{ errors }"
           >
             <span class="text-red-400">{{ errors[0] }}</span>
