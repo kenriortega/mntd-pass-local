@@ -11,6 +11,11 @@
       </div>
       <div class="text-center px-3 pb-6 pt-2">
         <h3 class="text-gray-500 text-sm bold font-sans">
+          <i
+            class="mr-2 fa fa-lock text-gray-500 cursor-pointer"
+            v-tooltip.left="text"
+            @click="onShowOptions"
+          ></i>
           {{ user.username }}
         </h3>
         <p class="mt-2 font-sans font-light text-gray-700">
@@ -50,8 +55,20 @@ export default {
       default: () => {}
     },
     secrets: {
-      type: Array,
-      default: () => []
+      type: Object,
+      default: () => {}
+    }
+  },
+  data() {
+    return {
+      text: 'Click to change password',
+      isOpen: false
+    }
+  },
+  methods: {
+    onShowOptions() {
+      this.isOpen = !this.isOpen
+      this.$emit('show-options', this.isOpen)
     }
   }
 }
