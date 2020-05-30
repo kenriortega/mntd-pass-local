@@ -205,7 +205,7 @@ export default {
     },
     async onCreateSecret({ category, name, value }) {
       let { username, token } = this.user
-      name = name.replace(' ', '_')
+      name = name.replace(' ', '_') // check this ok
       category = category.toLowerCase()
       try {
         let res = await SecretService.createSecret(
