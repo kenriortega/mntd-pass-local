@@ -18,7 +18,6 @@ module.exports = {
     if (!user) throw new Error('User not found')
 
     const secretKey = await getSecretKey(username)
-    console.log(secretKey)
     const randomKey = user.randomKey
     const encrypted = encrypt(value, secretKey, randomKey)
 
