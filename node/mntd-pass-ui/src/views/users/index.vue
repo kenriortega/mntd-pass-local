@@ -41,7 +41,7 @@
                     Update password
                   </h2>
                   <p class="leading-relaxed text-base text-gray-700">
-                    Change password. This feat will be to change your password
+                    Change password. This feature will be available to change your password
                     and encrypt all secrets for better security
                   </p>
                 </div>

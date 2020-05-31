@@ -19,25 +19,27 @@
           {{ user.username }}
         </h3>
         <p class="mt-2 font-sans font-light text-gray-700">
-          Craated at {{ user.createdAt }}
+          Craated {{ user.createdAt }}
         </p>
       </div>
       <div class="flex items-baseline pb-3 text-gray-700">
-        <div class="text-center mr-3 border-r pr-3">
+        <div class="text-center ml-3 mr-3 border-r pr-3">
+          <span class="uppercase text-gray-700">role:</span>
           <h2
             class=" inline-block bg-gray-750 text-gray-700-spotify text-xs px-2 rounded-full uppercase font-semibold tracking-wide ml-2 mr-2"
           >
             {{ user.role }}
           </h2>
-          <span class="uppercase text-gray-700">role</span>
         </div>
         <div class="text-center">
+          <div class="text-center ml-3 mr-3 pr-3">
+          <span class="uppercase text-gray-700">secrets:</span>
           <h2
             class=" inline-block bg-gray-750 text-gray-700-spotify text-xs px-2 rounded-full uppercase font-semibold tracking-wide ml-2 mr-2"
           >
             {{ secrets.count }}
           </h2>
-          <span class="uppercase text-gray-700">secrets</span>
+          </div>
         </div>
       </div>
     </div>

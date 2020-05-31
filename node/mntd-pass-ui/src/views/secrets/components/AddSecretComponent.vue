@@ -59,9 +59,9 @@
                 class="w-full mt-1 bg-gray-800-spotify border-transparent"
                 v-model="payload.category"
               >
-                <option class="uppercase">Payments</option>
-                <option class="uppercase">Servers</option>
                 <option class="uppercase">Personal</option>
+                <option class="uppercase">Payments</option>
+                <option class="uppercase">Servers</option>                
                 <option class="uppercase">Services</option>
               </select>
             </label>
