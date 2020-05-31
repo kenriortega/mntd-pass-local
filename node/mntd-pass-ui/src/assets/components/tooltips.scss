@@ -1,26 +1,16 @@
 .tooltip {
-  display: block !important;
-  z-index: 10000;
+  @apply block z-50;
 
   .tooltip-inner {
-    background: black;
-    color: white;
-    border-radius: 16px;
-    padding: 5px 10px 4px;
+    @apply bg-gray-900-spotify text-white rounded-md p-4;
   }
 
   .tooltip-arrow {
-    width: 0;
-    height: 0;
-    border-style: solid;
-    position: absolute;
-    margin: 5px;
-    border-color: black;
-    z-index: 1;
+    @apply w-0 h-0 absolute border border-black border-solid z-10 m-4;
   }
 
   &[x-placement^='top'] {
-    margin-bottom: 5px;
+    @apply mt-22;
 
     .tooltip-arrow {
       border-width: 5px 5px 0 5px;
