@@ -109,6 +109,7 @@ export default {
         this.msg = successful ? 'successful' : 'unsuccessful'
         this.$toaster.success(`copy ${this.msg}`)
         this.showSecrets = false
+        this.changed = false
 
         // Migrar a toast o sweet alert
       } catch (err) {

@@ -263,6 +263,7 @@ export default {
         this.msg = successful ? 'successful' : 'unsuccessful'
         this.$toaster.success(`copy ${this.msg}`)
         this.showSecrets = false
+        this.changed = null
       } catch (err) {
         this.$toaster.error(`Error: To copy to clibBoard`)
       }
