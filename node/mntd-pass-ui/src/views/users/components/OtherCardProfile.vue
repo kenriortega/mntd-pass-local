@@ -33,12 +33,12 @@
         </div>
         <div class="text-center">
           <div class="text-center ml-3 mr-3 pr-3">
-          <span class="uppercase text-gray-700">secrets:</span>
-          <h2
-            class=" inline-block bg-gray-750 text-gray-700-spotify text-xs px-2 rounded-full uppercase font-semibold tracking-wide ml-2 mr-2"
-          >
-            {{ secrets.count }}
-          </h2>
+            <span class="uppercase text-gray-700">secrets:</span>
+            <h2
+              class=" inline-block bg-gray-750 text-gray-700-spotify text-xs px-2 rounded-full uppercase font-semibold tracking-wide ml-2 mr-2"
+            >
+              {{ secrets.count }}
+            </h2>
           </div>
         </div>
       </div>
@@ -47,8 +47,6 @@
 </template>
 
 <script>
-import 'jdenticon'
-
 export default {
   name: 'userProfile',
   props: {
