@@ -15,6 +15,7 @@
             <strong class="text-xl text-green-300">{{ data.count }}</strong>
             secrets in total
             <i
+              v-tooltip.right="tooltips.change"
               :class="
                 `ml-4 mr-2 cursor-pointer fa fa-${
                   showViews ? 'table' : 'address-card'
@@ -23,6 +24,7 @@
               @click="showViews = !showViews"
             ></i>
             <i
+              v-tooltip.right="tooltips.add"
               class="
                 ml-4 mr-2 cursor-pointer fa fa-plus
               "
@@ -93,6 +95,10 @@ export default {
       data: {
         count: 0,
         data: []
+      },
+      tooltips: {
+        add: 'Add new Secret',
+        change: 'Change visualizations'
       },
       filter: '',
       errorMSG: {},
