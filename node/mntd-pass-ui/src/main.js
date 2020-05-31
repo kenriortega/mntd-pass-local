@@ -8,7 +8,7 @@ import '@/assets/css/all.min.css'
 // externals
 import VTooltip from 'v-tooltip'
 import Toaster from 'v-toaster'
-import 'v-toaster/dist/v-toaster.css'
+// import 'v-toaster/dist/v-toaster.css'
 import {
   ValidationProvider,
   ValidationObserver,

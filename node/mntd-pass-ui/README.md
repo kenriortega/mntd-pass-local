@@ -26,7 +26,8 @@ npm run lint
 
 ### TODO
 
-- Add component to create | update | delete secrets
-- Add profile view and password update component
+- ~~Add component to create | update | delete secrets~~
+- ~~Add privacy to secrets value after edit o get value actions~~
+- ~~Add profile view and password update component~~
 - Add i18n feature
 - Add unit testing
