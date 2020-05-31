@@ -52,6 +52,7 @@
               </button>
               <span>
                 <p
+                  v-if="showSecrets"
                   :class="`text-${isCoping === indice ? 'green' : 'gray'}-700`"
                 >
                   {{ value }}
@@ -77,7 +78,8 @@ export default {
       value: '',
       isCoping: null,
       msg: null,
-      changed: false
+      changed: false,
+      showSecrets: false
     }
   },
   methods: {
@@ -88,6 +90,9 @@ export default {
         if (res.status === 200) {
           this.value = res.data.value
           this.changed = true
+          this.showSecrets = true
+
+          this.$toaster.success(`get value from ${name} successfully `)
         }
       } catch (err) {
         this.$emit('showError', err.response.data)
@@ -102,12 +107,12 @@ export default {
       try {
         let successful = document.execCommand('copy')
         this.msg = successful ? 'successful' : 'unsuccessful'
+        this.$toaster.success(`copy ${this.msg}`)
+        this.showSecrets = false
+
         // Migrar a toast o sweet alert
       } catch (err) {
-        this.$emit('showError', {
-          statusCode: 500,
-          error: 'Failed to Copy'
-        })
+        this.$toaster.error(`Error: To copy to clibBoard`)
       }
 
       /* unselect the range */

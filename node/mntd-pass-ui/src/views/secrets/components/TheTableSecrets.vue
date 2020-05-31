@@ -62,6 +62,7 @@
               <div class="flex flex-col">
                 <span> {{ row.name }} </span>
                 <span
+                  v-if="showSecrets"
                   :contenteditable="isEditing === indice"
                   :ref="`span-${indice}`"
                   @dblclick="editingSecret(indice)"
@@ -182,7 +183,8 @@ export default {
       changed: null,
       value: '',
       editing: null,
-      msg: null
+      msg: null,
+      showSecrets: false
     }
   },
   computed: {
@@ -244,6 +246,7 @@ export default {
       try {
         let res = await SecretService.getValueSecret(username, name, token)
         this.value = res.data.value
+        this.showSecrets = true
       } catch (err) {
         this.$emit('showError', err.response.data)
         this.changed = null
@@ -258,11 +261,10 @@ export default {
       try {
         let successful = document.execCommand('copy')
         this.msg = successful ? 'successful' : 'unsuccessful'
+        this.$toaster.success(`copy ${this.msg}`)
+        this.showSecrets = false
       } catch (err) {
-        this.$emit('showError', {
-          statusCode: 500,
-          error: 'Failed to Copy'
-        })
+        this.$toaster.error(`Error: To copy to clibBoard`)
       }
 
       copyToClibBoard.setAttribute('type', 'hidden')
