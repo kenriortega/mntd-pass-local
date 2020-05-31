@@ -61,7 +61,7 @@
               >
                 <option class="uppercase">Personal</option>
                 <option class="uppercase">Payments</option>
-                <option class="uppercase">Servers</option>                
+                <option class="uppercase">Servers</option>
                 <option class="uppercase">Services</option>
               </select>
             </label>

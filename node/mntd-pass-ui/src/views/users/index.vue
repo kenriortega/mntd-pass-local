@@ -27,8 +27,8 @@
                 <!-- end -->
               </div>
 
+              <!-- Info sections -->
               <div class="xl:w-1/4 md:w-1/2 p-4">
-                <!-- sections -->
                 <div class="border border-gray-700-spotify p-6 rounded-lg my-8">
                   <div
                     class="w-32 h-32 inline-flex items-center justify-center rounded-full bg-gray-800-spotify mb-4"
@@ -41,13 +41,13 @@
                     Update password
                   </h2>
                   <p class="leading-relaxed text-base text-gray-700">
-                    Change password. This feature will be available to change your password
-                    and encrypt all secrets for better security
+                    Change password. This feature will be available to change
+                    your password and encrypt all secrets for better security
                   </p>
                 </div>
-                <!-- end sections -->
               </div>
-
+              <!-- end sections -->
+              <!-- UpdatePassword section -->
               <div v-if="showPanel" class="xl:w-1/4 md:w-1/2 p-4">
                 <!-- sections -->
                 <div class="border border-gray-700-spotify p-6 rounded-lg my-8">
@@ -123,6 +123,7 @@
                 </div>
                 <!-- end sections -->
               </div>
+              <!-- end UpdatePassword section -->
             </div>
           </div>
         </div>
