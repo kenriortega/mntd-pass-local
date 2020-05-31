@@ -26,12 +26,7 @@
       >
         <i class="mr-2 fa fa-user"></i>Profile</router-link
       >
-      <a
-        href="#"
-        class="block px-4 py-2 text-gray-700-spotify rounded hover:bg-green-900 hover:text-white"
-      >
-        <i class="mr-2 fa fa-bell"></i>Notification</a
-      >
+
       <a
         href="#"
         class="block px-4 py-2 text-gray-700-spotify rounded hover:bg-green-900 hover:text-white"
