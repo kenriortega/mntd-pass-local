@@ -3,7 +3,7 @@
     <top-bar />
     <div class="content-spotify overflow-y-auto ">
       <div class="mx-auto container">
-        <alert-component v-show="errorMSG.error" :errorMSG="errorMSG" />
+        <!-- <alert-component v-show="errorMSG.error" :errorMSG="errorMSG" /> -->
         <h2 class="mt-18 text-5xl font-semibold text-white">Profile</h2>
         <div class="mt-10">
           <h3 class="font-semiblod text-sm border-b border-gray-900 pb-2">
@@ -58,15 +58,9 @@
                   </div>
                   <ValidationObserver v-slot="{ invalid }">
                     <form
-                      @submit.prevent="changePassword"
+                      @submit.prevent="changePassword()"
                       class="w-full max-w-sm my-8 items-center"
                     >
-                      <div class="flex  items-center py-2">
-                        <alert-component
-                          v-show="errorMSG.error"
-                          :errorMSG="errorMSG"
-                        />
-                      </div>
                       <div
                         class="flex items-center border-b border-b-2 border-green-800 py-2"
                       >
@@ -135,18 +129,16 @@
 <script>
 import { UtilsService, UserService } from '@/services/'
 
-import AlertComponent from '@/components/AlertComponent'
 import TopBar from '@/components/TopBarComponent'
 import CardProfile2 from './components/OtherCardProfile'
 export default {
   name: 'profile',
   components: {
     TopBar,
-    AlertComponent,
     CardProfile2
   },
   data: () => ({
-    errorMSG: {},
+    notification: {},
     user: {},
     secrets: {},
     payload: {},
@@ -172,11 +164,14 @@ export default {
           this.payload.newPassword,
           this.user.token
         )
-        if (res.statsu === 202) {
-          console.log(res.data.result)
+        if (res.status === 202) {
+          this.$toaster.success(`Yours password update are ${res.data.result}`)
         }
       } catch (err) {
-        this.errorMSG = err.response.data
+        this.notification = err.response.data
+        this.$toaster.error(
+          `Error: ${this.notification.statusCode} \n ${this.notification.error}`
+        )
       }
     },
     onShowOptions(data) {
