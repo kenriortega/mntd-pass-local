@@ -6,7 +6,10 @@
         class="w-full max-w-sm my-40 items-center"
       >
         <div class="flex flex-col items-center py-2">
-          <alert-component v-show="errorMSG.error" :errorMSG="errorMSG" />
+          <alert-component
+            v-show="notification.error"
+            :notification="notification"
+          />
         </div>
         <div
           class="flex items-center border-b border-b-2 border-green-800 py-2"
@@ -84,7 +87,7 @@ export default {
     return {
       payload: {},
       user: {},
-      errorMSG: {},
+      notification: {},
       question: `Don't have an account? Create one`
     }
   },
@@ -100,7 +103,7 @@ export default {
         UtilsService.saveLocalStorage('user', this.user)
         this.$router.push({ name: 'secrets' })
       } catch (err) {
-        this.errorMSG = err.response.data
+        this.notification = err.response.data
       }
     }
   }
