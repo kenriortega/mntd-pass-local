@@ -3,7 +3,10 @@
     <top-bar />
     <div class="content-spotify overflow-y-auto ">
       <div class="mx-auto container">
-        <alert-component v-show="errorMSG.error" :errorMSG="errorMSG" />
+        <!-- <alert-component
+          v-show="notification.error"
+          :notification="notification"
+        /> -->
         <h2 class="mt-18 text-5xl font-semibold text-white">Secrets</h2>
         <div class="mt-10">
           <h3 class="font-semiblod text-sm border-b border-gray-900 pb-2">
@@ -73,7 +76,7 @@
 
 <script>
 import { SecretService, UtilsService } from '@/services/'
-import AlertComponent from '@/components/AlertComponent'
+// import AlertComponent from '@/components/AlertComponent'
 import TopBar from '@/components/TopBarComponent'
 import Secret from './components/SecretComponent'
 import TheTableSecrets from './components/TheTableSecrets'
@@ -84,7 +87,7 @@ export default {
   name: 'secretsContent',
   components: {
     TopBar,
-    AlertComponent,
+    // AlertComponent,
     Secret,
     TheTableSecrets,
     AddSecret
@@ -101,7 +104,7 @@ export default {
         change: 'Change visualizations'
       },
       filter: '',
-      errorMSG: {},
+      notification: {},
       showViews: true,
       showPanelCreateSecret: false
     }
@@ -134,6 +137,7 @@ export default {
 
     if (UtilsService.getItemStorage(`secrets_by_${username}`)) {
       this.data = UtilsService.getItemStorage(`secrets_by_${username}`)
+      this.$toaster.info('Load secrets Data from a localStorage.')
     } else {
       this.getSecretsByUsername()
     }
@@ -157,15 +161,23 @@ export default {
         let res = await SecretService.getSecrets(username, token)
         if (res.status === 200) {
           this.data = res.data
+          this.$toaster.success('Load secrets Data from a server.')
 
           UtilsService.saveLocalStorage(`secrets_by_${username}`, this.data)
         }
       } catch (err) {
-        this.errorMSG = err.response.data
+        this.notification = err.response.data
+        this.$toaster.error(
+          `Error: ${this.notification.statusCode} \n ${this.notification.type}`
+        )
       }
     },
     showError(error) {
-      this.errorMSG = error
+      this.notification = error
+      this.$toaster.error(
+        `Error: ${this.notification.statusCode}\n
+        Type: ${this.notification.error}\n  ${this.notification.message}`
+      )
     },
     changeView() {
       this.showViews = !this.showViews
@@ -179,14 +191,17 @@ export default {
         let res = await SecretService.deleteSecretByName(username, name, token)
         if (res.status === 200) {
           if (res.data.result === 1) {
-            console.log(`${name} was deleted`)
+            this.$toaster.success(`${name} was deleted`)
             await this.getSecretsByUsername()
           } else {
-            console.log(`${name} was not deleted`)
+            this.$toaster.warning(`${name} was not deleted`)
           }
         }
       } catch (err) {
-        this.errorMSG = err.response.data
+        this.notification = err.response.data
+        this.$toaster.error(
+          `Error: ${this.notification.statusCode} \n ${this.notification.type}`
+        )
       }
     },
     async onUpdateSecret({ value, name }) {
@@ -200,13 +215,16 @@ export default {
         )
         if (res.status === 200) {
           if (res.data.result[0] === 0) {
-            console.log('Unsuccessfully')
+            this.$toaster.warning(`${name} was not updated`)
           } else {
-            console.log('Successfully')
+            this.$toaster.success(`${name} was updated`)
           }
         }
       } catch (err) {
-        this.errorMSG = err.response.data
+        this.notification = err.response.data
+        this.$toaster.error(
+          `Error: ${this.notification.statusCode} \n ${this.notification.type}`
+        )
       }
     },
     async onCreateSecret({ category, name, value }) {
@@ -223,9 +241,13 @@ export default {
         )
         if (res.status === 201) {
           await this.getSecretsByUsername()
+          this.$toaster.success('Create secret.')
         }
       } catch (err) {
-        this.errorMSG = err.response.data
+        this.notification = err.response.data
+        this.$toaster.error(
+          `Error: ${this.notification.statusCode} \n ${this.notification.type}`
+        )
       }
     }
   }
