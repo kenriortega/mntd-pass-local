@@ -14,6 +14,7 @@
     "core-js": "^3.6.4",
     "jdenticon": "^2.2.0",
     "moment": "^2.25.3",
+    "v-toaster": "^1.0.3",
     "v-tooltip": "^2.0.3",
     "vee-validate": "^3.3.0",
     "vue": "^2.6.11",
