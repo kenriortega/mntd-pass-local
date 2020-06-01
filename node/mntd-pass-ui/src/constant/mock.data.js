@@ -1,9 +1,10 @@
 const MOCK_SECRETS_SERVICE = {
   MOCK_USER: 'kalix',
+  MOCK_SECRETS_NAME: 'my-secret-38',
   TOKEN:
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoia2FsaXgiLCJmdWxsTmFtZSI6ImthbGl4IE9ydGVnYSIsInJvbGUiOiJ3b3JrZXIiLCJjcmVhdGVkQXQiOiIyMDIwLTA1LTE2VDIxOjU5OjA3LjU2OVoifSwiaWF0IjoxNTkxMDI2MTEyLCJleHAiOjE1OTEwMjkxMTJ9.Qb2yXGMCkeTid4PX-8FWDt4MeZHXhf9yaFdtU76jves',
 
-  DATA_IN: {
+  GET_SECRETS_DATA_IN: {
     count: 5,
     data: [
       {
@@ -20,7 +21,7 @@ const MOCK_SECRETS_SERVICE = {
       }
     ]
   },
-  DATA_OUT: {
+  GET_SECRETS_DATA_OUT: {
     count: 5,
     data: [
       {
@@ -36,7 +37,25 @@ const MOCK_SECRETS_SERVICE = {
         createdAt: '2 days ago'
       }
     ]
+  },
+  GET_SECRETS_VALUE_DATA_IN: {
+    username: 'kalix',
+    name: 'my-secret-38',
+    category: 'payments',
+    value: 'hjhj',
+    createdAt: '2020-05-30T18:58:39.840Z'
+  },
+  GET_SECRETS_VALUE_DATA_OUT: {
+    username: 'kalix',
+    name: 'my-secret-38',
+    category: 'payments',
+    value: 'hjhj',
+    createdAt: '2020-05-30T18:58:39.840Z'
   }
 }
 
-export default MOCK_SECRETS_SERVICE
+const MOCK_DATA = {
+  MOCK_SECRETS_SERVICE
+}
+
+export default MOCK_DATA
