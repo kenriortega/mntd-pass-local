@@ -1,6 +1,6 @@
 import SecretsServcice from '../SecretsService'
 import axios from '@/http'
-import MOCK_SECRETS_SERVICE from '@/constant/mock.data.js'
+import MOCK_SECRETS_SERVICE from '@/constant/mock.data'
 jest.mock('@/http', () => {
   return {
     // create: jest.fn(),
