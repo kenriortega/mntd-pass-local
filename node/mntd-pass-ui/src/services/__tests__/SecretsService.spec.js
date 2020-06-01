@@ -5,7 +5,8 @@ jest.mock('@/http', () => {
   return {
     get: jest.fn(),
     put: jest.fn(),
-    delete: jest.fn()
+    delete: jest.fn(),
+    post: jest.fn()
   }
 })
 describe('Services -> SecretsServcice', () => {
@@ -62,5 +63,21 @@ describe('Services -> SecretsServcice', () => {
       MOCK_DATA.MOCK_SECRETS_SERVICE.TOKEN
     )
     expect(res.data.result).toEqual(1)
+  })
+
+  it(`should post secret `, async () => {
+    axios.post.mockResolvedValue({
+      data: MOCK_DATA.MOCK_SECRETS_SERVICE.POST_SECRETS_DATA_IN
+    })
+    let res = await SecretsServcice.createSecret(
+      MOCK_DATA.MOCK_SECRETS_SERVICE.MOCK_USER,
+      MOCK_DATA.MOCK_SECRETS_SERVICE.MOCK_SECRETS_NAME,
+      'newValue',
+      'payments',
+      MOCK_DATA.MOCK_SECRETS_SERVICE.TOKEN
+    )
+    expect(res).toEqual({
+      data: MOCK_DATA.MOCK_SECRETS_SERVICE.POST_SECRETS_DATA_OUT
+    })
   })
 })

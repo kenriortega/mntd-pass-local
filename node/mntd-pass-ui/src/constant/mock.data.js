@@ -51,6 +51,18 @@ const MOCK_SECRETS_SERVICE = {
     category: 'payments',
     value: 'hjhj',
     createdAt: '2020-05-30T18:58:39.840Z'
+  },
+  POST_SECRETS_DATA_IN: {
+    username: 'kalix',
+    name: 'my-secret-38',
+    category: 'payments',
+    createdAt: '2020-05-30T18:58:39.840Z'
+  },
+  POST_SECRETS_DATA_OUT: {
+    username: 'kalix',
+    name: 'my-secret-38',
+    category: 'payments',
+    createdAt: '2020-05-30T18:58:39.840Z'
   }
 }
 
