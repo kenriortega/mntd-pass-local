@@ -17,7 +17,7 @@
           <i class="mr-2 fa fa-user text-gray-500"></i>
           <ValidationProvider
             name="Username"
-            rules="required|alpha"
+            rules="required"
             v-slot="{ errors }"
           >
             <span class="text-red-400">{{ errors[0] }}</span>
@@ -35,7 +35,7 @@
           <i class="mr-2 fa fa-lock text-gray-500"></i>
           <ValidationProvider
             name="password"
-            rules="required|alpha"
+            rules="required"
             v-slot="{ errors }"
           >
             <span class="text-red-400">{{ errors[0] }}</span>
@@ -53,7 +53,7 @@
           <i class="mr-2 fa fa-check text-gray-500"></i>
           <ValidationProvider
             name="passwordConfirm"
-            rules="required|alpha"
+            rules="required"
             v-slot="{ errors }"
           >
             <span class="text-red-400">{{ errors[0] }}</span>
@@ -108,13 +108,21 @@ export default {
   methods: {
     async signUp() {
       try {
-        let res = await UserService.signUp(
-          this.payload.username,
-          this.payload.password,
-          this.payload.confirmPassword
-        )
-        this.user = res.data
-        this.$router.push({ name: 'login' })
+        if (this.payload.password !== this.payload.confirmPassword) {
+          this.notification = {
+            error: 'Password not match',
+            message: 'password not match',
+            statusCode: 500
+          }
+          this.payload = {}
+        } else {
+          let res = await UserService.signUp(
+            this.payload.username,
+            this.payload.password
+          )
+          this.user = res.data
+          this.$router.push({ name: 'login' })
+        }
       } catch (err) {
         this.notification = err.response.data
       }
