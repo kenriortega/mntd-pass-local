@@ -11,25 +11,15 @@ jest.mock('@/http', () => {
 describe('User -> UserServcice', () => {
   it(`should post a new user`, async () => {
     axios.post.mockResolvedValue({
-      data: {
-        username: 'mntd3',
-        fullName: 'Mntd mark3',
-        role: 'basic',
-        createdAt: '2020-06-01T22:28:17.668Z'
-      }
+      data: MOCK_DATA.MOCK_USER_SERVICE.SIGN_UP_DATA_IN
     })
     let result = await UserServcice.signUp(
       MOCK_DATA.MOCK_SECRETS_SERVICE.MOCK_USER,
-      '1233',
-      '1234'
+      MOCK_DATA.MOCK_USER_SERVICE.PASSWORD,
+      MOCK_DATA.MOCK_USER_SERVICE.PASSWORD
     )
     expect(result).toEqual({
-      data: {
-        username: 'mntd3',
-        fullName: 'Mntd mark3',
-        role: 'basic',
-        createdAt: '2020-06-01T22:28:17.668Z'
-      }
+      data: MOCK_DATA.MOCK_USER_SERVICE.SIGN_UP_DATA_OUT
     })
   })
   it(`should put password for an username`, async () => {
@@ -39,8 +29,8 @@ describe('User -> UserServcice', () => {
       }
     })
     let result = await UserServcice.changePassword(
-      '1233',
-      '1234',
+      MOCK_DATA.MOCK_USER_SERVICE.PASSWORD,
+      MOCK_DATA.MOCK_USER_SERVICE.PASSWORD,
       MOCK_DATA.MOCK_SECRETS_SERVICE.MOCK_TOKEN
     )
     expect(result).toEqual({

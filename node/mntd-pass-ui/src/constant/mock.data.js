@@ -68,8 +68,40 @@ const MOCK_SECRETS_SERVICE = {
   }
 }
 
+const MOCK_USER_SERVICE = {
+  PASSWORD: 'password',
+  SIGN_UP_DATA_IN: {
+    username: 'mntd3',
+    fullName: 'Mntd mark3',
+    role: 'basic',
+    createdAt: '2020-06-01T22:28:17.668Z'
+  },
+  SIGN_UP_DATA_OUT: {
+    username: 'mntd3',
+    fullName: 'Mntd mark3',
+    role: 'basic',
+    createdAt: '2020-06-01T22:28:17.668Z'
+  },
+  LOGIN_DATA_IN: {
+    username: 'kalix',
+    fullName: 'kalix Ortega',
+    role: 'worker',
+    token:
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoia2FsaXgiLCJmdWxsTmFtZSI6ImthbGl4IE9ydGVnYSIsInJvbGUiOiJ3b3JrZXIiLCJjcmVhdGVkQXQiOiIyMDIwLTA1LTE2VDIxOjU5OjA3LjU2OVoifSwiaWF0IjoxNTkxMDUwNjM1LCJleHAiOjE1OTEwNTM2MzV9.vyt1OnYkFa0D81jVxAf8F0XuABQyuDSF38bD03P-OME',
+    createdAt: '2020-05-16T21:59:07.569Z'
+  },
+  LOGIN_DATA_OUT: {
+    username: 'kalix',
+    fullName: 'kalix Ortega',
+    role: 'worker',
+    token:
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJuYW1lIjoia2FsaXgiLCJmdWxsTmFtZSI6ImthbGl4IE9ydGVnYSIsInJvbGUiOiJ3b3JrZXIiLCJjcmVhdGVkQXQiOiIyMDIwLTA1LTE2VDIxOjU5OjA3LjU2OVoifSwiaWF0IjoxNTkxMDUwNjM1LCJleHAiOjE1OTEwNTM2MzV9.vyt1OnYkFa0D81jVxAf8F0XuABQyuDSF38bD03P-OME',
+    createdAt: '2020-05-16T21:59:07.569Z'
+  }
+}
 const MOCK_DATA = {
-  MOCK_SECRETS_SERVICE
+  MOCK_SECRETS_SERVICE,
+  MOCK_USER_SERVICE
 }
 
 export default MOCK_DATA
