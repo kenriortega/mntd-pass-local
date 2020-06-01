@@ -45,7 +45,7 @@ describe('Services -> SecretsServcice', () => {
     let res = await SecretsServcice.updateSecretByName(
       MOCK_DATA.MOCK_SECRETS_SERVICE.MOCK_USER,
       MOCK_DATA.MOCK_SECRETS_SERVICE.MOCK_SECRETS_NAME,
-      'newValue',
+      MOCK_DATA.MOCK_SECRETS_SERVICE.MOCK_SECRETS_VALUE,
       MOCK_DATA.MOCK_SECRETS_SERVICE.TOKEN
     )
     expect(res.data.result[0]).toEqual(1)
@@ -72,8 +72,8 @@ describe('Services -> SecretsServcice', () => {
     let res = await SecretsServcice.createSecret(
       MOCK_DATA.MOCK_SECRETS_SERVICE.MOCK_USER,
       MOCK_DATA.MOCK_SECRETS_SERVICE.MOCK_SECRETS_NAME,
-      'newValue',
-      'payments',
+      MOCK_DATA.MOCK_SECRETS_SERVICE.MOCK_SECRETS_VALUE,
+      MOCK_DATA.MOCK_SECRETS_SERVICE.MOCK_SECRETS_CATEGORY,
       MOCK_DATA.MOCK_SECRETS_SERVICE.TOKEN
     )
     expect(res).toEqual({
