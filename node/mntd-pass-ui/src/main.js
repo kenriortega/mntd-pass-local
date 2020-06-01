@@ -18,7 +18,6 @@ import {
 import * as rules from 'vee-validate/dist/rules'
 import es from 'vee-validate/dist/locale/es.json'
 localize(es)
-
 Object.keys(rules).forEach(rule => extend(rule, rules[rule]))
 Vue.component('ValidationObserver', ValidationObserver)
 Vue.component('ValidationProvider', ValidationProvider)

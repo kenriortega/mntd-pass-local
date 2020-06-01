@@ -16,7 +16,7 @@
 import SidebarComponent from '@/components/SidebarComponent'
 import SecretsContent from '@/views/secrets/index'
 export default {
-  name: 'Secrets',
+  name: 'SecretsView',
   components: {
     SidebarComponent,
     SecretsContent
