@@ -15,7 +15,6 @@ describe('User -> UserServcice', () => {
     })
     let result = await UserServcice.signUp(
       MOCK_DATA.MOCK_SECRETS_SERVICE.MOCK_USER,
-      MOCK_DATA.MOCK_USER_SERVICE.PASSWORD,
       MOCK_DATA.MOCK_USER_SERVICE.PASSWORD
     )
     expect(result).toEqual({
