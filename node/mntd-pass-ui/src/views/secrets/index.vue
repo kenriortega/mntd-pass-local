@@ -200,7 +200,7 @@ export default {
       } catch (err) {
         this.notification = err.response.data
         this.$toaster.error(
-          `Error: ${this.notification.statusCode} \n ${this.notification.type}`
+          `Error: ${this.notification.statusCode} \n ${this.notification.error}`
         )
       }
     },
@@ -223,7 +223,7 @@ export default {
       } catch (err) {
         this.notification = err.response.data
         this.$toaster.error(
-          `Error: ${this.notification.statusCode} \n ${this.notification.type}`
+          `Error: ${this.notification.statusCode} \n ${this.notification.error}`
         )
       }
     },
@@ -246,7 +246,7 @@ export default {
       } catch (err) {
         this.notification = err.response.data
         this.$toaster.error(
-          `Error: ${this.notification.statusCode} \n ${this.notification.type}`
+          `Error: ${this.notification.statusCode} \n ${this.notification.error}`
         )
       }
     }
