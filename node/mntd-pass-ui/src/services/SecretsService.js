@@ -30,7 +30,6 @@ class SecretService {
     return res
   }
   async updateSecretByName(username, name, value, token) {
-    console.log(value)
     let res = await axios.put(
       `${API_ROUTES.GET_SECRET}/${username}/${name}`,
       {
