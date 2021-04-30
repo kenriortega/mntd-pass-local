@@ -14,7 +14,7 @@
   "author": "kalix",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^4.0.1",
+    "bcrypt": "^5.0.0",
     "dotenv": "^8.2.0",
     "knex": "^0.20.13",
     "minimist": "^1.2.5",
