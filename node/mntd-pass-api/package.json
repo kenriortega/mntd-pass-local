@@ -26,7 +26,7 @@
   },
   "devDependencies": {
     "fastify-cli": "^1.5.0",
-    "lerna": "^3.20.2",
+    "lerna": "^6.4.1",
     "nodemon": "^2.0.3"
   }
 }
