@@ -13,7 +13,7 @@
     "ioredis": "^4.16.2",
     "knex": "^0.20.13",
     "pg": "^8.0.0",
-    "sequelize": "^5.21.6",
+    "sequelize": "^6.29.0",
     "sequelize-cli": "^5.5.1",
     "sqlite3": "^4.1.1"
   }
